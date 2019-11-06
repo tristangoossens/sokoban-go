@@ -15,3 +15,13 @@ type Player struct {
 	*tl.Entity
 	P Coordinates
 }
+
+type Titlescreen struct {
+	tl.Level
+	Logo *tl.Entity
+	Text []*tl.Text
+}
+
+type Gamescreen struct {
+	tl.Level
+}
