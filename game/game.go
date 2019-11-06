@@ -2,6 +2,7 @@ package trisoban
 
 import (
 	tl "github.com/JoelOtter/termloop"
+	"io/ioutil"
 )
 
 func StartGame() {
@@ -10,10 +11,17 @@ func StartGame() {
 		Bg: tl.ColorBlack,
 	})
 
-	leveltje := new(Level)
-	leveltje.Entity = tl.NewEntity(1, 1, 1, 1)
+	player := NewPlayer()
 
-	level.AddEntity(leveltje)
+	// leveltje := new(Level)
+	// leveltje.Entity = tl.NewEntity(1, 1, 1, 1)
+
+	logofile, _ := ioutil.ReadFile("util/logo.text")
+	logoEntity := tl.NewEntityFromCanvas(10, 3, tl.CanvasFromString(string(logofile)))
+	level.AddEntity(logoEntity)
+
+	level.AddEntity(player)
 	game.Screen().SetLevel(level)
+	game.Screen().SetFps(40)
 	game.Start()
 }
