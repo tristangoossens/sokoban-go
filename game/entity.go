@@ -1,8 +1,9 @@
 package trisoban
 
 import (
-	tl "github.com/JoelOtter/termloop"
 	"io/ioutil"
+
+	tl "github.com/JoelOtter/termloop"
 )
 
 func NewGameScreen() *Gamescreen {
@@ -10,11 +11,11 @@ func NewGameScreen() *Gamescreen {
 	gs.Level = tl.NewBaseLevel(tl.Cell{
 		Bg: tl.ColorBlack,
 	})
+	player := NewPlayer()
+	b = NewLevelBorder()
 
-	leveltje := new(CurrentLevel)
-	leveltje.Entity = tl.NewEntity(1, 1, 1, 1)
-
-	gs.Level.AddEntity(leveltje)
+	gs.AddEntity(b)
+	gs.AddEntity(player)
 
 	return gs
 }
@@ -43,11 +44,21 @@ func NewTitleScreen() *Titlescreen {
 
 func NewPlayer() *Player {
 	player := new(Player)
-	player.pCanvas = tl.NewCanvas(2, 1)
-	player.pCanvas[0][0] = playercell1
-	player.pCanvas[1][0] = playercell1
 	player.pCoords = CheckPlayerPosition()
-	player.Entity = tl.NewEntityFromCanvas(player.pCoords.X, player.pCoords.Y, player.pCanvas)
+	canvas := tl.NewCanvas(2, 1)
+	canvas[0][0] = playercell1
+	canvas[1][0] = playercell1
+	player.Entity = tl.NewEntityFromCanvas(0, 0, canvas)
+
+	// player.Entity = tl.NewEntityFromCanvas(player.pCoords.X1, player.pCoords.Y1, player.pCanvas)
 
 	return player
+}
+
+func NewLevelBorder() *LevelBorder {
+	levelborder := new(LevelBorder)
+	levelborder.Entity = tl.NewEntity(1, 1, 1, 1)
+	levelborder.aCoords = map[Coordinates]int{}
+
+	return levelborder
 }

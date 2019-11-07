@@ -4,8 +4,6 @@ import (
 	tl "github.com/JoelOtter/termloop"
 )
 
-var game *tl.Game
-
 func StartGame() {
 	game = tl.NewGame()
 

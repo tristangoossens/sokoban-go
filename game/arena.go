@@ -9,7 +9,7 @@ import (
 	tl "github.com/JoelOtter/termloop"
 )
 
-func (level *CurrentLevel) Draw(screen *tl.Screen) {
+func (border *LevelBorder) Draw(screen *tl.Screen) {
 	file, err := os.Open("util/levels.txt")
 	if err != nil {
 		log.Fatalln(file)
@@ -23,13 +23,21 @@ func (level *CurrentLevel) Draw(screen *tl.Screen) {
 		for i, v := range xline {
 			switch v {
 			case "#":
-				screen.RenderCell(startx+i+1, starty, &tl.Cell{
-					Fg: tl.ColorBlue,
-					Ch: '▓',
-				})
+				border.aCoords[Coordinates{startx + i, starty}] = 1
+				for v := range border.aCoords {
+					screen.RenderCell(v.X, v.Y, &tl.Cell{
+						Fg: tl.ColorBlue,
+						Ch: '▓',
+					})
+				}
 			}
 		}
 		starty++
 	}
 	file.Close()
+}
+
+func (border *LevelBorder) Contains(c Coordinates) bool {
+	_, exists := border.aCoords[c]
+	return exists
 }

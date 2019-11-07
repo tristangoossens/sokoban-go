@@ -2,20 +2,21 @@ package trisoban
 
 import tl "github.com/JoelOtter/termloop"
 
-type CurrentLevel struct {
-	*tl.Entity
+// Variables
+
+var playercell1 = tl.Cell{
+	Fg: tl.ColorGreen,
+	Ch: '▓',
 }
 
-type Coordinates struct {
-	X int
-	Y int
-}
+var gs *Gamescreen
+var game *tl.Game
+var b *LevelBorder
 
-type Player struct {
-	*tl.Entity
-	pCoords Coordinates
-	pCanvas tl.Canvas
-}
+var prevX int
+var prevY int
+
+// Levels
 
 type Titlescreen struct {
 	tl.Level
@@ -25,9 +26,25 @@ type Titlescreen struct {
 
 type Gamescreen struct {
 	tl.Level
+	PlayerEntity *Player
+	BorderEntity *LevelBorder
 }
 
-var playercell1 = tl.Cell{
-	Fg: tl.ColorGreen,
-	Ch: '▓',
+// Entities
+
+type LevelBorder struct {
+	*tl.Entity
+	aCoords map[Coordinates]int
+}
+
+type Player struct {
+	*tl.Entity
+	pCoords Coordinates
+}
+
+// Other
+
+type Coordinates struct {
+	X int
+	Y int
 }
