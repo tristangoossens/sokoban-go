@@ -2,7 +2,7 @@ package trisoban
 
 import tl "github.com/JoelOtter/termloop"
 
-type Level struct {
+type CurrentLevel struct {
 	*tl.Entity
 }
 
@@ -13,7 +13,8 @@ type Coordinates struct {
 
 type Player struct {
 	*tl.Entity
-	P Coordinates
+	pCoords Coordinates
+	pCanvas tl.Canvas
 }
 
 type Titlescreen struct {
@@ -24,4 +25,9 @@ type Titlescreen struct {
 
 type Gamescreen struct {
 	tl.Level
+}
+
+var playercell1 = tl.Cell{
+	Fg: tl.ColorGreen,
+	Ch: '▓',
 }
