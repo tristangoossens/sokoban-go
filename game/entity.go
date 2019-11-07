@@ -4,13 +4,14 @@ import (
 	tl "github.com/JoelOtter/termloop"
 	"io/ioutil"
 )
+
 func NewGameScreen() *Gamescreen {
 	gs := new(Gamescreen)
 	gs.Level = tl.NewBaseLevel(tl.Cell{
 		Bg: tl.ColorBlack,
 	})
 
-	leveltje := new(Level)
+	leveltje := new(CurrentLevel)
 	leveltje.Entity = tl.NewEntity(1, 1, 1, 1)
 
 	gs.Level.AddEntity(leveltje)
@@ -38,4 +39,15 @@ func NewTitleScreen() *Titlescreen {
 
 	ts.Level.AddEntity(logoEntity)
 	return ts
+}
+
+func NewPlayer() *Player {
+	player := new(Player)
+	player.pCanvas = tl.NewCanvas(2, 1)
+	player.pCanvas[0][0] = playercell1
+	player.pCanvas[1][0] = playercell1
+	player.pCoords = CheckPlayerPosition()
+	player.Entity = tl.NewEntityFromCanvas(player.pCoords.X, player.pCoords.Y, player.pCanvas)
+
+	return player
 }
