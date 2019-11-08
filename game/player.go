@@ -2,51 +2,56 @@ package trisoban
 
 import (
 	"bufio"
-	tl "github.com/JoelOtter/termloop"
 	"log"
 	"os"
 	"strings"
+
+	tl "github.com/JoelOtter/termloop"
 )
 
 func (player *Player) Draw(screen *tl.Screen) {
-	// if player.BorderCollision() {
-	// 	player.PreviousPosition()
-	// }
-	player.Entity.Draw(screen)
+	screen.RenderCell(player.X, player.Y, &tl.Cell{
+		Fg: tl.ColorRed,
+		Ch: '▓',
+	})
 }
 
-func CheckPlayerPosition() Coordinates {
+func GetPlayerPosition() (int, int) {
+	var startx = 7 // Determines at which coordinate the rendering starts
+	var starty = 5 // Determines at which coordinate the rendering starts
+	var x int
+	var y int
+
 	file, err := os.Open("util/levels.txt")
 	if err != nil {
 		log.Fatalln(file)
 	}
+
 	scanner := bufio.NewScanner(file)
-	var startx = 7 // Determines at which coordinate the rendering starts
-	var starty = 5 // Determines at which coordinate the rendering starts
-	var coord Coordinates
+
 	for scanner.Scan() {
 		xline := strings.Split(scanner.Text(), "")
 		for i, v := range xline {
 			switch v {
 			case "P":
-				coord = Coordinates{
-					X: startx + i,
-					Y: starty,
-				}
+				x, y = startx+i, starty
 			}
 		}
 		starty++
 	}
 	file.Close()
-	return coord
+
+	return x, y
 }
 
-func (player *Player) PreviousPosition() {
-	player.SetPosition(prevX, prevY)
-}
+func (player *Player) CheckBorderCollision(x int, y int) bool {
+	c := Coordinates{
+		X: x,
+		Y: y,
+	}
+	_, exists := border.bCoords[c]
 
-func (player *Player) BorderCollision() bool {
-	if b.Contains(player.pCoords) {
+	if exists {
 		return true
 	}
 	return false

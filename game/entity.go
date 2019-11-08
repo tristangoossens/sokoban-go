@@ -6,20 +6,6 @@ import (
 	tl "github.com/JoelOtter/termloop"
 )
 
-func NewGameScreen() *Gamescreen {
-	gs := new(Gamescreen)
-	gs.Level = tl.NewBaseLevel(tl.Cell{
-		Bg: tl.ColorBlack,
-	})
-	player := NewPlayer()
-	b = NewLevelBorder()
-
-	gs.AddEntity(b)
-	gs.AddEntity(player)
-
-	return gs
-}
-
 func NewTitleScreen() *Titlescreen {
 	ts := new(Titlescreen)
 	ts.Level = tl.NewBaseLevel(tl.Cell{
@@ -42,23 +28,35 @@ func NewTitleScreen() *Titlescreen {
 	return ts
 }
 
-func NewPlayer() *Player {
-	player := new(Player)
-	player.pCoords = CheckPlayerPosition()
-	canvas := tl.NewCanvas(2, 1)
-	canvas[0][0] = playercell1
-	canvas[1][0] = playercell1
-	player.Entity = tl.NewEntityFromCanvas(0, 0, canvas)
+func NewGameScreen() *Gamescreen {
+	gs := new(Gamescreen)
+	gs.Level = tl.NewBaseLevel(tl.Cell{
+		Bg: tl.ColorBlack,
+	})
+	border = NewBorder()
+	player := NewPlayer()
+	gs.AddEntity(border)
+	gs.AddEntity(player)
 
-	// player.Entity = tl.NewEntityFromCanvas(player.pCoords.X1, player.pCoords.Y1, player.pCanvas)
-
-	return player
+	return gs
 }
 
-func NewLevelBorder() *LevelBorder {
-	levelborder := new(LevelBorder)
-	levelborder.Entity = tl.NewEntity(1, 1, 1, 1)
-	levelborder.aCoords = map[Coordinates]int{}
+func NewBorder() *Border {
+	border := new(Border)
+	border.Entity = tl.NewEntity(1, 1, 1, 1)
+	cMap := MapBorder()
+	border.bCoords = cMap
 
-	return levelborder
+	return border
+}
+
+func NewPlayer() *Player {
+	player := new(Player)
+	player.Entity = tl.NewEntity(1, 1, 1, 1)
+	x, y := GetPlayerPosition()
+	player.X = x
+	player.Y = y
+	player.SetPosition(player.X, player.Y)
+
+	return player
 }
