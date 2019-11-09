@@ -4,6 +4,11 @@ import (
 	tl "github.com/JoelOtter/termloop"
 )
 
+var oldX int
+var oldY int
+var oldcrateX int
+var oldcrateY int
+
 func (ts *Titlescreen) Tick(event tl.Event) {
 	if event.Type == tl.EventKey {
 		switch event.Key {
@@ -15,40 +20,93 @@ func (ts *Titlescreen) Tick(event tl.Event) {
 }
 
 func (player *Player) Tick(event tl.Event) {
-	var oldX int
-	var oldY int
 	if event.Type == tl.EventKey {
 		player.X, player.Y = player.Position()
 		oldX, oldY = player.Position()
+		crate.X, crate.Y = crate.Position()
+		oldcrateX, oldcrateY = crate.Position()
 		switch event.Key {
 		case tl.KeyArrowUp:
-			if player.CheckBorderCollision(oldX, oldY-1) {
-				player.SetPosition(player.X, player.Y)
-			} else {
-				player.Y = player.Y - 1
-				player.SetPosition(player.X, player.Y)
-			}
+			player.CheckCollisions("UP")
 		case tl.KeyArrowDown:
-			if player.CheckBorderCollision(oldX, oldY+1) {
-				player.SetPosition(player.X, player.Y)
-			} else {
+			player.CheckCollisions("DOWN")
+		case tl.KeyArrowLeft:
+			player.CheckCollisions("LEFT")
+		case tl.KeyArrowRight:
+			player.CheckCollisions("RIGHT")
+		}
+	}
+}
+
+func (player *Player) CheckCollisions(direction string) {
+	switch direction {
+	case "UP":
+		if player.CheckCrateCollision(oldX, oldY-1) {
+			if crate.CheckBorderCollision(oldcrateX, oldcrateY-1) {
 				player.Y = player.Y + 1
 				player.SetPosition(player.X, player.Y)
-			}
-		case tl.KeyArrowLeft:
-			if player.CheckBorderCollision(oldX-1, oldY) {
-				player.SetPosition(player.X, player.Y)
+				crate.SetPosition(crate.X, crate.Y)
 			} else {
-				player.X = player.X - 1
-				player.SetPosition(player.X, player.Y)
+				crate.Y = crate.Y - 1
+				crate.SetPosition(crate.X, crate.Y)
 			}
-		case tl.KeyArrowRight:
-			if player.CheckBorderCollision(oldX+1, oldY) {
+		}
+		if player.CheckBorderCollision(oldX, oldY-1) {
+			player.SetPosition(player.X, player.Y)
+		} else {
+			player.Y = player.Y - 1
+			player.SetPosition(player.X, player.Y)
+		}
+	case "DOWN":
+		if player.CheckCrateCollision(oldX, oldY+1) {
+			if crate.CheckBorderCollision(oldcrateX, oldcrateY+1) {
+				player.Y = player.Y - 1
 				player.SetPosition(player.X, player.Y)
+				crate.SetPosition(crate.X, crate.Y)
 			} else {
+				crate.Y = crate.Y + 1
+				crate.SetPosition(crate.X, crate.Y)
+			}
+		}
+		if player.CheckBorderCollision(oldX, oldY+1) {
+			player.SetPosition(player.X, player.Y)
+		} else {
+			player.Y = player.Y + 1
+			player.SetPosition(player.X, player.Y)
+		}
+	case "LEFT":
+		if player.CheckCrateCollision(oldX-1, oldY) {
+			if crate.CheckBorderCollision(oldcrateX-1, oldcrateY) {
 				player.X = player.X + 1
 				player.SetPosition(player.X, player.Y)
+				crate.SetPosition(crate.X, crate.Y)
+			} else {
+				crate.X = crate.X - 1
+				crate.SetPosition(crate.X, crate.Y)
 			}
+		}
+		if player.CheckBorderCollision(oldX-1, oldY) {
+			player.SetPosition(player.X, player.Y)
+		} else {
+			player.X = player.X - 1
+			player.SetPosition(player.X, player.Y)
+		}
+	case "RIGHT":
+		if player.CheckCrateCollision(oldX+1, oldY) {
+			if crate.CheckBorderCollision(oldcrateX+1, oldcrateY) {
+				player.X = player.X - 1
+				player.SetPosition(player.X, player.Y)
+				crate.SetPosition(crate.X, crate.Y)
+			} else {
+				crate.X = crate.X + 1
+				crate.SetPosition(crate.X, crate.Y)
+			}
+		}
+		if player.CheckBorderCollision(oldX+1, oldY) {
+			player.SetPosition(player.X, player.Y)
+		} else {
+			player.X = player.X + 1
+			player.SetPosition(player.X, player.Y)
 		}
 	}
 }

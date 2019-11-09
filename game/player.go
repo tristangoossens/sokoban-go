@@ -56,3 +56,14 @@ func (player *Player) CheckBorderCollision(x int, y int) bool {
 	}
 	return false
 }
+
+func (player *Player) CheckCrateCollision(x int, y int) bool {
+	c := Coordinates{
+		X: x,
+		Y: y,
+	}
+	if crate.Coordinates == c {
+		return true
+	}
+	return false
+}
