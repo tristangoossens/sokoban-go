@@ -34,11 +34,23 @@ func NewGameScreen() *Gamescreen {
 		Bg: tl.ColorBlack,
 	})
 	border = NewBorder()
+	crate = NewCrate()
 	player := NewPlayer()
 	gs.AddEntity(border)
+	gs.AddEntity(crate)
 	gs.AddEntity(player)
 
 	return gs
+}
+
+func NewCrate() *Crate {
+	crate := new(Crate)
+	crate.Entity = tl.NewEntity(1, 1, 1, 1)
+	cCoords := MapCrate()
+	crate.Coordinates = cCoords
+	crate.SetPosition(crate.X, crate.Y)
+
+	return crate
 }
 
 func NewBorder() *Border {

@@ -5,6 +5,7 @@ import tl "github.com/JoelOtter/termloop"
 // Variables
 var game *tl.Game
 var border *Border
+var crate *Crate
 
 var prevX int
 var prevY int
@@ -32,6 +33,11 @@ type Player struct {
 type Border struct {
 	*tl.Entity
 	bCoords map[Coordinates]int
+}
+
+type Crate struct {
+	*tl.Entity
+	Coordinates
 }
 
 // Other
