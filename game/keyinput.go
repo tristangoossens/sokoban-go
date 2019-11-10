@@ -13,7 +13,7 @@ func (ts *Titlescreen) Tick(event tl.Event) {
 	if event.Type == tl.EventKey {
 		switch event.Key {
 		case tl.KeyEnter:
-			gs := NewGameScreen()
+			gs = NewGameScreen()
 			game.Screen().SetLevel(gs)
 		}
 	}
@@ -42,6 +42,12 @@ func (player *Player) CheckCollisions(direction string) {
 	switch direction {
 	case "UP":
 		if player.CheckCrateCollision(oldX, oldY-1) {
+			if crate.CheckGoalCollision(oldcrateX, oldcrateY-1) {
+				crate.Y = crate.Y - 1
+				crate.SetPosition(crate.X, crate.Y)
+				crate.reachedGoal = true
+				gs.RemoveEntity(crate)
+			}
 			if crate.CheckBorderCollision(oldcrateX, oldcrateY-1) {
 				player.Y = player.Y + 1
 				player.SetPosition(player.X, player.Y)
@@ -59,6 +65,12 @@ func (player *Player) CheckCollisions(direction string) {
 		}
 	case "DOWN":
 		if player.CheckCrateCollision(oldX, oldY+1) {
+			if crate.CheckGoalCollision(oldcrateX, oldcrateY+1) {
+				crate.Y = crate.Y + 1
+				crate.SetPosition(crate.X, crate.Y)
+				crate.reachedGoal = true
+				gs.RemoveEntity(crate)
+			}
 			if crate.CheckBorderCollision(oldcrateX, oldcrateY+1) {
 				player.Y = player.Y - 1
 				player.SetPosition(player.X, player.Y)
@@ -76,6 +88,12 @@ func (player *Player) CheckCollisions(direction string) {
 		}
 	case "LEFT":
 		if player.CheckCrateCollision(oldX-1, oldY) {
+			if crate.CheckGoalCollision(oldcrateX-1, oldcrateY) {
+				crate.X = crate.X - 1
+				crate.SetPosition(crate.X, crate.Y)
+				crate.reachedGoal = true
+				gs.RemoveEntity(crate)
+			}
 			if crate.CheckBorderCollision(oldcrateX-1, oldcrateY) {
 				player.X = player.X + 1
 				player.SetPosition(player.X, player.Y)
@@ -93,6 +111,12 @@ func (player *Player) CheckCollisions(direction string) {
 		}
 	case "RIGHT":
 		if player.CheckCrateCollision(oldX+1, oldY) {
+			if crate.CheckGoalCollision(oldcrateX+1, oldcrateY) {
+				crate.X = crate.X + 1
+				crate.SetPosition(crate.X, crate.Y)
+				crate.reachedGoal = true
+				gs.RemoveEntity(crate)
+			}
 			if crate.CheckBorderCollision(oldcrateX+1, oldcrateY) {
 				player.X = player.X - 1
 				player.SetPosition(player.X, player.Y)

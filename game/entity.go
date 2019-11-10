@@ -35,8 +35,10 @@ func NewGameScreen() *Gamescreen {
 	})
 	border = NewBorder()
 	crate = NewCrate()
+	goal = NewGoal()
 	player := NewPlayer()
 	gs.AddEntity(border)
+	gs.AddEntity(goal)
 	gs.AddEntity(crate)
 	gs.AddEntity(player)
 
@@ -71,4 +73,13 @@ func NewPlayer() *Player {
 	player.SetPosition(player.X, player.Y)
 
 	return player
+}
+
+func NewGoal() *Goal {
+	goal := new(Goal)
+	goal.Entity = tl.NewEntity(1, 1, 1, 1)
+	gCoords := MapGoal()
+	goal.Coordinates = gCoords
+
+	return goal
 }
