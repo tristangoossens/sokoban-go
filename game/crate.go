@@ -66,7 +66,7 @@ func (crate *Crate) CheckGoalCollision(x, y int) bool {
 
 func (crate *Crate) Draw(screen *tl.Screen) {
 	screen.RenderCell(crate.X, crate.Y, &tl.Cell{
-		Fg: tl.ColorMagenta,
+		Fg: tl.ColorWhite,
 		Ch: '▓',
 	})
 }
