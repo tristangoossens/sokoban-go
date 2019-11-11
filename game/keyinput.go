@@ -34,6 +34,8 @@ func (player *Player) Tick(event tl.Event) {
 			player.CheckCollisions("LEFT")
 		case tl.KeyArrowRight:
 			player.CheckCollisions("RIGHT")
+		case tl.KeyHome:
+			RestartLevel()
 		}
 	}
 }
@@ -46,7 +48,9 @@ func (player *Player) CheckCollisions(direction string) {
 				crate.Y = crate.Y - 1
 				crate.SetPosition(crate.X, crate.Y)
 				crate.reachedGoal = true
+				gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
 				gs.RemoveEntity(crate)
+				gs.AddEntity(gs.BeatLevel)
 			}
 			if crate.CheckBorderCollision(oldcrateX, oldcrateY-1) {
 				player.Y = player.Y + 1
@@ -69,7 +73,9 @@ func (player *Player) CheckCollisions(direction string) {
 				crate.Y = crate.Y + 1
 				crate.SetPosition(crate.X, crate.Y)
 				crate.reachedGoal = true
+				gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
 				gs.RemoveEntity(crate)
+				gs.AddEntity(gs.BeatLevel)
 			}
 			if crate.CheckBorderCollision(oldcrateX, oldcrateY+1) {
 				player.Y = player.Y - 1
@@ -92,7 +98,9 @@ func (player *Player) CheckCollisions(direction string) {
 				crate.X = crate.X - 1
 				crate.SetPosition(crate.X, crate.Y)
 				crate.reachedGoal = true
+				gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
 				gs.RemoveEntity(crate)
+				gs.AddEntity(gs.BeatLevel)
 			}
 			if crate.CheckBorderCollision(oldcrateX-1, oldcrateY) {
 				player.X = player.X + 1
@@ -115,7 +123,9 @@ func (player *Player) CheckCollisions(direction string) {
 				crate.X = crate.X + 1
 				crate.SetPosition(crate.X, crate.Y)
 				crate.reachedGoal = true
+				gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
 				gs.RemoveEntity(crate)
+				gs.AddEntity(gs.BeatLevel)
 			}
 			if crate.CheckBorderCollision(oldcrateX+1, oldcrateY) {
 				player.X = player.X - 1

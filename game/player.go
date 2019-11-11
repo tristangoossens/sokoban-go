@@ -10,6 +10,22 @@ import (
 )
 
 func (player *Player) Draw(screen *tl.Screen) {
+	screen.RenderCell(58, 15, &tl.Cell{
+		Fg: tl.ColorRed,
+		Ch: '▓',
+	})
+	screen.RenderCell(58, 16, &tl.Cell{
+		Fg: tl.ColorYellow,
+		Ch: '░',
+	})
+	screen.RenderCell(58, 17, &tl.Cell{
+		Fg: tl.ColorWhite,
+		Ch: '▓',
+	})
+	screen.RenderCell(58, 18, &tl.Cell{
+		Fg: tl.ColorBlue,
+		Ch: '▓',
+	})
 	screen.RenderCell(player.X, player.Y, &tl.Cell{
 		Fg: tl.ColorRed,
 		Ch: '▓',
