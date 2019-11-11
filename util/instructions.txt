@@ -1,0 +1,16 @@
+###########################      ######################
+#                         #      #                    #
+#  Instructions:          #      #  Options:          #
+#                         #      #                    #
+#  ↑: Move up             #      #  Home: Restart     #
+#  ↓: Move down           #      #  Insert: Save      #
+#  →: Move right          #      #                    #
+#  ←: Move left           #      #  F1: Prev level    #
+#                         #      #  F2: Next level    #
+#                         #      #                    #
+#   : Player              #      #                    #
+#   : Goal                #      #                    #
+#   : Crate               #      #                    #
+#   : Wall                #      #                    #          
+#                         #      #                    #
+###########################      ######################
