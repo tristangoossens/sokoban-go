@@ -47,10 +47,7 @@ func (player *Player) CheckCollisions(direction string) {
 			if crate.CheckGoalCollision(oldcrateX, oldcrateY-1) {
 				crate.Y = crate.Y - 1
 				crate.SetPosition(crate.X, crate.Y)
-				crate.reachedGoal = true
-				gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
-				gs.RemoveEntity(crate)
-				gs.AddEntity(gs.BeatLevel)
+				LevelCompleted()
 			}
 			if crate.CheckBorderCollision(oldcrateX, oldcrateY-1) {
 				player.Y = player.Y + 1
@@ -72,10 +69,7 @@ func (player *Player) CheckCollisions(direction string) {
 			if crate.CheckGoalCollision(oldcrateX, oldcrateY+1) {
 				crate.Y = crate.Y + 1
 				crate.SetPosition(crate.X, crate.Y)
-				crate.reachedGoal = true
-				gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
-				gs.RemoveEntity(crate)
-				gs.AddEntity(gs.BeatLevel)
+				LevelCompleted()
 			}
 			if crate.CheckBorderCollision(oldcrateX, oldcrateY+1) {
 				player.Y = player.Y - 1
@@ -97,10 +91,7 @@ func (player *Player) CheckCollisions(direction string) {
 			if crate.CheckGoalCollision(oldcrateX-1, oldcrateY) {
 				crate.X = crate.X - 1
 				crate.SetPosition(crate.X, crate.Y)
-				crate.reachedGoal = true
-				gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
-				gs.RemoveEntity(crate)
-				gs.AddEntity(gs.BeatLevel)
+				LevelCompleted()
 			}
 			if crate.CheckBorderCollision(oldcrateX-1, oldcrateY) {
 				player.X = player.X + 1
@@ -122,10 +113,7 @@ func (player *Player) CheckCollisions(direction string) {
 			if crate.CheckGoalCollision(oldcrateX+1, oldcrateY) {
 				crate.X = crate.X + 1
 				crate.SetPosition(crate.X, crate.Y)
-				crate.reachedGoal = true
-				gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
-				gs.RemoveEntity(crate)
-				gs.AddEntity(gs.BeatLevel)
+				LevelCompleted()
 			}
 			if crate.CheckBorderCollision(oldcrateX+1, oldcrateY) {
 				player.X = player.X - 1

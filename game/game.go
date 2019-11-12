@@ -1,8 +1,12 @@
 package trisoban
 
 import (
+	"bufio"
 	"fmt"
 	"io/ioutil"
+	"log"
+	"os"
+	"strings"
 
 	tl "github.com/JoelOtter/termloop"
 )
@@ -73,6 +77,8 @@ func NewGameScreen() *Gamescreen {
 	goal = NewGoal()
 	player = NewPlayer()
 
+	MapLevel()
+
 	gs.AddEntity(gs.CurrentLevel)
 	gs.AddEntity(instructionsEntity)
 	gs.AddEntity(border)
@@ -81,4 +87,57 @@ func NewGameScreen() *Gamescreen {
 	gs.AddEntity(player)
 
 	return gs
+}
+
+func LevelCompleted() {
+	crate.reachedGoal = true
+	gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
+	gs.RemoveEntity(crate)
+	gs.AddEntity(gs.BeatLevel)
+}
+
+func MapLevel() {
+	var startx = 7 // Determines at which coordinate the rendering starts
+	var starty = 5 // Determines at which coordinate the rendering starts
+
+	border.bCoords = make(map[Coordinates]int)
+
+	file, err := os.Open("util/levels.txt")
+	if err != nil {
+		log.Fatalln(file)
+	}
+
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		xline := strings.Split(scanner.Text(), "")
+		for i, v := range xline {
+			switch v {
+			case "#":
+				border.bCoords[Coordinates{
+					X: startx + i,
+					Y: starty,
+				}] = 1
+			case "G":
+				goal.Coordinates = Coordinates{
+					X: startx + i,
+					Y: starty,
+				}
+			case "P":
+				player.Coordinates = Coordinates{
+					X: startx + i,
+					Y: starty,
+				}
+				player.SetPosition(player.X, player.Y)
+			case "C":
+				crate.Coordinates = Coordinates{
+					X: startx + i,
+					Y: starty,
+				}
+				crate.SetPosition(crate.X, crate.Y)
+			}
+		}
+		starty++
+	}
+	file.Close()
 }
