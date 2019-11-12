@@ -1,12 +1,8 @@
 package trisoban
 
 import (
-	"bufio"
 	"fmt"
 	"io/ioutil"
-	"log"
-	"os"
-	"strings"
 
 	tl "github.com/JoelOtter/termloop"
 )
@@ -32,6 +28,8 @@ func RestartLevel() {
 	crate = NewCrate()
 	goal = NewGoal()
 	player = NewPlayer()
+
+	MapLevel()
 
 	gs.AddEntity(border)
 	gs.AddEntity(goal)
@@ -89,55 +87,37 @@ func NewGameScreen() *Gamescreen {
 	return gs
 }
 
+func UpdateLevelText() {
+	gs.CurrentLevel.SetText(fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels))
+}
+
 func LevelCompleted() {
 	crate.reachedGoal = true
 	gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
 	gs.RemoveEntity(crate)
 	gs.AddEntity(gs.BeatLevel)
+
 }
 
-func MapLevel() {
-	var startx = 7 // Determines at which coordinate the rendering starts
-	var starty = 5 // Determines at which coordinate the rendering starts
+func NextLevel() {
+	crate.reachedGoal = false
+	CurrentLevel += 1
+	gs.RemoveEntity(border)
+	gs.RemoveEntity(player)
+	gs.RemoveEntity(goal)
+	gs.RemoveEntity(gs.BeatLevel)
 
-	border.bCoords = make(map[Coordinates]int)
+	border = NewBorder()
+	crate = NewCrate()
+	goal = NewGoal()
+	player = NewPlayer()
 
-	file, err := os.Open("util/levels.txt")
-	if err != nil {
-		log.Fatalln(file)
-	}
+	MapLevel()
 
-	scanner := bufio.NewScanner(file)
+	gs.AddEntity(border)
+	gs.AddEntity(goal)
+	gs.AddEntity(crate)
+	gs.AddEntity(player)
 
-	for scanner.Scan() {
-		xline := strings.Split(scanner.Text(), "")
-		for i, v := range xline {
-			switch v {
-			case "#":
-				border.bCoords[Coordinates{
-					X: startx + i,
-					Y: starty,
-				}] = 1
-			case "G":
-				goal.Coordinates = Coordinates{
-					X: startx + i,
-					Y: starty,
-				}
-			case "P":
-				player.Coordinates = Coordinates{
-					X: startx + i,
-					Y: starty,
-				}
-				player.SetPosition(player.X, player.Y)
-			case "C":
-				crate.Coordinates = Coordinates{
-					X: startx + i,
-					Y: starty,
-				}
-				crate.SetPosition(crate.X, crate.Y)
-			}
-		}
-		starty++
-	}
-	file.Close()
+	UpdateLevelText()
 }

@@ -36,6 +36,10 @@ func (player *Player) Tick(event tl.Event) {
 			player.CheckCollisions("RIGHT")
 		case tl.KeyHome:
 			RestartLevel()
+		case tl.KeyF2:
+			if crate.reachedGoal {
+				NextLevel()
+			}
 		}
 	}
 }
