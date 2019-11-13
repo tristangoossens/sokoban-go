@@ -45,7 +45,7 @@ func MapLevel() {
 
 	file, err := os.Open(fmt.Sprintf("util/levels/level%d.txt", CurrentLevel))
 	if err != nil {
-		log.Fatalln(file)
+		log.Fatalf("Level with number %d was not found", CurrentLevel)
 	}
 
 	scanner := bufio.NewScanner(file)
