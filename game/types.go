@@ -3,6 +3,9 @@ package trisoban
 import tl "github.com/JoelOtter/termloop"
 
 // Variables
+
+var levelslice []string
+
 var game *tl.Game
 var gs *Gamescreen
 var border *Border
