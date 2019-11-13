@@ -36,9 +36,19 @@ func (player *Player) Tick(event tl.Event) {
 			player.CheckCollisions("RIGHT")
 		case tl.KeyHome:
 			RestartLevel()
+		case tl.KeyF1:
+			if crate.reachedGoal {
+				ChangeLevel("PREVIOUS")
+			} else {
+				cratenotingoal := tl.NewText(69, 23, "Crate has not reached goal", tl.ColorWhite, tl.ColorBlack)
+				gs.AddEntity(cratenotingoal)
+			}
 		case tl.KeyF2:
 			if crate.reachedGoal {
-				NextLevel()
+				ChangeLevel("NEXT")
+			} else {
+				cratenotingoal := tl.NewText(69, 23, "Crate has not reached goal", tl.ColorWhite, tl.ColorBlack)
+				gs.AddEntity(cratenotingoal)
 			}
 		}
 	}

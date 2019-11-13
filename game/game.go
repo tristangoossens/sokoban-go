@@ -99,9 +99,16 @@ func LevelCompleted() {
 
 }
 
-func NextLevel() {
+func ChangeLevel(s string) {
 	crate.reachedGoal = false
-	CurrentLevel += 1
+
+	switch s {
+	case "NEXT":
+		CurrentLevel += 1
+	case "PREVIOUS":
+		CurrentLevel -= 1
+	}
+
 	gs.RemoveEntity(border)
 	gs.RemoveEntity(player)
 	gs.RemoveEntity(goal)
