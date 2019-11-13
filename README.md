@@ -5,7 +5,7 @@
 Retro game sokoban clone made in Go! Created by tristangoossens.  
 Please star this repository to help my project grow!
 
-### The game
+## The game
 
 Here is a screenshot of sokoban's titlescreen! 
 
@@ -15,7 +15,7 @@ Screenshot of sokoban's first level!
 
 ![Level1](https://github.com/tristangoossens/sokoban-go/blob/master/images/game-gamescreen.png)
 
-### How to play
+## How to play
 
 First of all you will need Go, you can find more information [here](https://golang.org/).
 
@@ -31,7 +31,7 @@ Then play it using the following command:
 $GOPATH/bin/sokoban-go
 ```
 
-### Bucket list for future versions
+## Bucket list for future versions
 
 - [ ] **Read levels from 1 file(instead of 20)**
 - [ ] **Implement support for multiple crates and goals.**
@@ -43,8 +43,8 @@ $GOPATH/bin/sokoban-go
 - [ ] Add test files for all game files
 - [ ] Start from last saved level.
 
-*Please help me add the functions below with a pull request!*
+*Feel free to help me add the functions above with a pull request!*
 
-### Links
+## Links
 
 
