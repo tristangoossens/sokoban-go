@@ -9,6 +9,7 @@ var oldY int
 var oldcrateX int
 var oldcrateY int
 
+// Tick listens to keyinput on the titlescreen, so if the enter key is pressed, the game will start.
 func (ts *Titlescreen) Tick(event tl.Event) {
 	if event.Type == tl.EventKey {
 		switch event.Key {
@@ -19,6 +20,7 @@ func (ts *Titlescreen) Tick(event tl.Event) {
 	}
 }
 
+// Tick listens to the player input and handle them accordingly.
 func (player *Player) Tick(event tl.Event) {
 	if event.Type == tl.EventKey {
 		player.X, player.Y = player.Position()
@@ -48,6 +50,15 @@ func (player *Player) Tick(event tl.Event) {
 	}
 }
 
+// CheckCollisions will calculate collisions and when there is a collision handle them accordingly.
+//
+// Check 1: Check if the player is colliding with a crate.
+//
+// Check 2: Check if the player is colliding with the border.
+//
+// Check 3: Check if the crate is colliding with the border.
+//
+// Check 4: Check if the crate is colliding with the goal.
 func (player *Player) CheckCollisions(direction string) {
 	switch direction {
 	case "UP":

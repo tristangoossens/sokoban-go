@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// NewCrate creates an entity for the crate and returns a pointer to a crate
 func NewCrate() *Crate {
 	crate := new(Crate)
 	crate.Entity = tl.NewEntity(1, 1, 1, 1)
@@ -16,6 +17,7 @@ func NewCrate() *Crate {
 	return crate
 }
 
+// NewBorder creates an entity for the border and returns a pointer to a border
 func NewBorder() *Border {
 	border := new(Border)
 	border.Entity = tl.NewEntity(1, 1, 1, 1)
@@ -23,6 +25,7 @@ func NewBorder() *Border {
 	return border
 }
 
+// NewPlayer creates an entity for the player and returns a pointer to a player
 func NewPlayer() *Player {
 	player := new(Player)
 	player.Entity = tl.NewEntity(1, 1, 1, 1)
@@ -30,6 +33,7 @@ func NewPlayer() *Player {
 	return player
 }
 
+// NewGoal creates an entity for the goal and returns a pointer to a goal
 func NewGoal() *Goal {
 	goal := new(Goal)
 	goal.Entity = tl.NewEntity(1, 1, 1, 1)
@@ -37,6 +41,7 @@ func NewGoal() *Goal {
 	return goal
 }
 
+// MapLevel reads from a level file and maps the coordinates for all of the entities
 func MapLevel() {
 	var startx = 7 // Determines at which coordinate the rendering starts
 	var starty = 5 // Determines at which coordinate the rendering starts

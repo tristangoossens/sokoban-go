@@ -7,6 +7,7 @@ import (
 	tl "github.com/JoelOtter/termloop"
 )
 
+// StartGame starts the game by creating a new game and adding a titlescreen.
 func StartGame() {
 	game = tl.NewGame()
 
@@ -17,6 +18,7 @@ func StartGame() {
 	game.Start()
 }
 
+// RestartLevel is a function that will reset the level by setting all of the entites to their default positions.
 func RestartLevel() {
 	gs.RemoveEntity(border)
 	gs.RemoveEntity(crate)
@@ -37,6 +39,7 @@ func RestartLevel() {
 	gs.AddEntity(player)
 }
 
+// NewTitleScreen will create a new titlescreen and read from the logo file to print out the ASCII art logo. This function will return a pointer to titlescreen.
 func NewTitleScreen() *Titlescreen {
 	ts := new(Titlescreen)
 	ts.Level = tl.NewBaseLevel(tl.Cell{
@@ -59,6 +62,7 @@ func NewTitleScreen() *Titlescreen {
 	return ts
 }
 
+// NewGameScreen will create a new gamescreen with the currentleveltext, instructions and the level itself and return it where it is called.
 func NewGameScreen() *Gamescreen {
 	gs := new(Gamescreen)
 	gs.Level = tl.NewBaseLevel(tl.Cell{
@@ -87,10 +91,12 @@ func NewGameScreen() *Gamescreen {
 	return gs
 }
 
+// UpdateLevelText will update the currentlevel text when the ChangeLevel function is called.
 func UpdateLevelText() {
 	gs.CurrentLevel.SetText(fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels))
 }
 
+// LevelCompleted will remove the crate entity and print a text when the level is beaten.
 func LevelCompleted() {
 	crate.reachedGoal = true
 	gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
@@ -99,6 +105,7 @@ func LevelCompleted() {
 
 }
 
+// ChangeLevel will change the level given the player input(F1: "NEXT", F2: "PREVIOUS").
 func ChangeLevel(s string) {
 	crate.reachedGoal = false
 
