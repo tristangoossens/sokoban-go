@@ -2,7 +2,7 @@
 
 ![Logo](https://github.com/tristangoossens/sokoban-go/blob/master/images/logo.png)
 
-Retro game sokoban clone made in Go! Created by tristangoossens. ![GitHub followers](https://img.shields.io/github/followers/tristangoossens?style=social)
+Retro game sokoban clone made in Go! Created by tristangoossens. ![GitHub followers](https://img.shields.io/github/followers/tristangoossens?style=social)  
 Please star this repository to help my project grow! ![GitHub stars](https://img.shields.io/github/stars/tristangoossens/sokoban-go?style=social)
 
 ## The game
@@ -47,4 +47,6 @@ $GOPATH/bin/sokoban-go
 
 ## Links
 
+- [Sokoban on Godoc.](https://godoc.org/github.com/tristangoossens/sokoban-go/game)
+- [Sokoban on repl.it.](https://repl.it/@tristangoossens/sokoban-go)
 
