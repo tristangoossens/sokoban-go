@@ -22,13 +22,20 @@ First of all you will need Go, you can find more information [here](https://gola
 When you have installed Go, you will need to install the game:
 
 ```shell
-go get github.com/tristangoossens/sokoban-go
+git clone https://github.com/tristangoossens/sokoban-go.git
 ```
 
 Then play it using the following command:
 
 ```shell
-$GOPATH/bin/sokoban-go
+go run run.go
+```
+
+Or build and run using the following:
+
+```
+go build run.go
+./run
 ```
 
 ## Bucket list for future versions
