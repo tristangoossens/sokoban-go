@@ -9,22 +9,22 @@ func (player *Player) Draw(screen *tl.Screen) {
 	// Instructions:
 
 	/// Player
-	screen.RenderCell(58, 15, &tl.Cell{
+	screen.RenderCell(58, 16, &tl.Cell{
 		Fg: tl.ColorRed,
 		Ch: '▓',
 	})
 	/// Goal
-	screen.RenderCell(58, 16, &tl.Cell{
+	screen.RenderCell(58, 17, &tl.Cell{
 		Fg: tl.ColorYellow,
 		Ch: '░',
 	})
 	/// Crate
-	screen.RenderCell(58, 17, &tl.Cell{
+	screen.RenderCell(58, 18, &tl.Cell{
 		Fg: tl.ColorWhite,
 		Ch: '▓',
 	})
 	/// Border
-	screen.RenderCell(58, 18, &tl.Cell{
+	screen.RenderCell(58, 19, &tl.Cell{
 		Fg: tl.ColorBlue,
 		Ch: '▓',
 	})
