@@ -1,6 +1,9 @@
 package trisoban
 
 import (
+	"io/ioutil"
+	"strconv"
+
 	tl "github.com/JoelOtter/termloop"
 )
 
@@ -46,6 +49,8 @@ func (player *Player) Tick(event tl.Event) {
 			if crate.reachedGoal {
 				ChangeLevel("PREVIOUS")
 			}
+		case tl.KeyInsert:
+			ioutil.WriteFile("util/loadgame.txt", []byte(strconv.Itoa(CurrentLevel)), 0644)
 		}
 	}
 }
