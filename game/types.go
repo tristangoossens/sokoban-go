@@ -17,7 +17,7 @@ var prevX int
 var prevY int
 
 // CurrentLevel this integer will determine the level you are currently on.
-var CurrentLevel = 1
+var CurrentLevel = LoadLevel()
 
 // TotalLevels this integer represents the total amount of levels.
 var TotalLevels = 20

@@ -3,6 +3,8 @@ package trisoban
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
+	"strconv"
 
 	tl "github.com/JoelOtter/termloop"
 )
@@ -134,4 +136,13 @@ func ChangeLevel(s string) {
 	gs.AddEntity(player)
 
 	UpdateLevelText()
+}
+
+func LoadLevel() int {
+	dat, err := ioutil.ReadFile("util/loadgame.txt")
+	if err != nil {
+		log.Fatalf("Error writing to file: %s", err)
+	}
+	byteToInt, _ := strconv.Atoi(string(dat))
+	return byteToInt
 }
