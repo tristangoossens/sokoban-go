@@ -5,7 +5,7 @@
 Retro game sokoban clone made in Go! Created by tristangoossens. ![GitHub followers](https://img.shields.io/github/followers/tristangoossens?style=social)  
 Please star this repository to help my project grow! ![GitHub stars](https://img.shields.io/github/stars/tristangoossens/sokoban-go?style=social)
 
-[![Try on repl.it](https://repl-badge.jajoosam.repl.co/try.png)](https://repl.it/@tristangoossens/sokoban-go)
+[![Run on Repl.it](https://repl.it/badge/github/tristangoossens/sokoban)](https://repl.it/github/tristangoossens/sokoban) 
 
 ## The game
 
@@ -50,7 +50,7 @@ go build run.go
 - [ ] Add a timer to the gamescreen to time your best times.
     - [ ] Save your best time to a markdown file(table).
 - [ ] Add test files for all game files
-- [ ] Start from last saved level.
+- [x] Start from last saved level.
 
 *Feel free to help me add the functions above with a pull request!*
 
