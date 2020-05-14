@@ -17,6 +17,12 @@ func (ts *Titlescreen) Tick(event tl.Event) {
 	if event.Type == tl.EventKey {
 		switch event.Key {
 		case tl.KeyEnter:
+			CurrentLevel = 1
+			gs = NewGameScreen()
+			game.Screen().SetLevel(gs)
+
+		case tl.KeyBackspace:
+			CurrentLevel = LoadLevel()
 			gs = NewGameScreen()
 			game.Screen().SetLevel(gs)
 		}

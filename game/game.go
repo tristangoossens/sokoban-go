@@ -138,6 +138,7 @@ func ChangeLevel(s string) {
 	UpdateLevelText()
 }
 
+//LoadLevel load level from last saved lvl
 func LoadLevel() int {
 	dat, err := ioutil.ReadFile("util/loadgame.txt")
 	if err != nil {

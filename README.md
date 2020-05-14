@@ -46,7 +46,7 @@ go build run.go
 - [ ] **Implement support for multiple crates and goals.**
 - [ ] Make the player, crate and goal a square(equal width and height)
 - [ ] Add more levels(goal is around 40-50)
-- [ ] Implement save current level button
+- [x] Implement save current level button
 - [ ] Add a timer to the gamescreen to time your best times.
     - [ ] Save your best time to a markdown file(table).
 - [ ] Add test files for all game files
