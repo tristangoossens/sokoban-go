@@ -13,8 +13,8 @@ import (
 // NewEntityCollection creates a collection of all the entities in the game
 func NewEntityCollection() *EntityCollection {
 	col := new(EntityCollection)
-	col.Crate = []*Crate{}
-	col.Goal = []*Goal{}
+	col.Crates = []*Crate{}
+	col.Goals = []*Goal{}
 	col.Player = NewPlayer()
 	col.Border = NewBorder()
 
@@ -56,9 +56,9 @@ func NewGoal() *Goal {
 // MapLevel reads from a level file and maps the coordinates for all of the entities
 func MapLevel() {
 	var startx = 7 // Determines at which coordinate the rendering starts
-	var starty = 5 // Determines at which coordinate the rendering starts
+	var starty = 4 // Determines at which coordinate the rendering starts
 
-	border.bCoords = make(map[Coordinates]int)
+	col.Border.bCoords = make(map[Coordinates]int)
 
 	file, err := os.Open(fmt.Sprintf("util/levels/level%d.txt", CurrentLevel))
 	if err != nil {
@@ -71,27 +71,34 @@ func MapLevel() {
 		for i, v := range xline {
 			switch v {
 			case "#":
-				border.bCoords[Coordinates{
+				col.Border.bCoords[Coordinates{
 					X: startx + i,
 					Y: starty,
 				}] = 1
-			case "G":
-				goal.Coordinates = Coordinates{
-					X: startx + i,
-					Y: starty,
-				}
 			case "P":
-				player.Coordinates = Coordinates{
+				col.Player.Coordinates = Coordinates{
 					X: startx + i,
 					Y: starty,
 				}
-				player.SetPosition(player.X, player.Y)
+				col.Player.SetPosition(col.Player.X, col.Player.Y)
+			case "G":
+				g := NewGoal()
+				g.Coordinates = Coordinates{
+					X: startx + i,
+					Y: starty,
+				}
+
+				g.SetPosition(g.X, g.Y)
+				col.Goals = append(col.Goals, g)
 			case "C":
-				crate.Coordinates = Coordinates{
+				c := NewCrate()
+				c.Coordinates = Coordinates{
 					X: startx + i,
 					Y: starty,
 				}
-				crate.SetPosition(crate.X, crate.Y)
+
+				c.SetPosition(c.X, c.Y)
+				col.Crates = append(col.Crates, c)
 			}
 		}
 		starty++

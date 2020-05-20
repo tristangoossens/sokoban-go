@@ -81,10 +81,17 @@ func NewGameScreen() *Gamescreen {
 
 	gs.AddEntity(gs.CurrentLevel)
 	gs.AddEntity(instructionsEntity)
-	gs.AddEntity(border)
-	gs.AddEntity(goal)
-	gs.AddEntity(crate)
-	gs.AddEntity(player)
+	gs.AddEntity(col.Border)
+
+	for _, v := range col.Goals {
+		gs.AddEntity(v)
+	}
+
+	for _, v := range col.Crates {
+		gs.AddEntity(v)
+	}
+
+	gs.AddEntity(col.Player)
 
 	return gs
 }

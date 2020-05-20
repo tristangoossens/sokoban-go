@@ -44,8 +44,8 @@ type Gamescreen struct {
 //EntityCollection collection of all entities within the game
 type EntityCollection struct {
 	Player *Player
-	Crate  []*Crate
-	Goal   []*Goal
+	Crates []*Crate
+	Goals  []*Goal
 	Border *Border
 }
 
