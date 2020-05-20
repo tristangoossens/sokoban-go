@@ -12,6 +12,7 @@ var border *Border
 var crate *Crate
 var goal *Goal
 var player *Player
+var col *EntityCollection
 
 var prevX int
 var prevY int
@@ -40,6 +41,14 @@ type Gamescreen struct {
 
 // Entities
 
+//EntityCollection collection of all entities within the game
+type EntityCollection struct {
+	Player *Player
+	Crate  []*Crate
+	Goal   []*Goal
+	Border *Border
+}
+
 // Player inherits the entity making it a drawable, it also inherits the border and coordinates struct.
 type Player struct {
 	*tl.Entity
@@ -64,6 +73,7 @@ type Crate struct {
 type Goal struct {
 	*tl.Entity
 	Coordinates
+	isActivated bool
 }
 
 // Other

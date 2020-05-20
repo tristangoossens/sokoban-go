@@ -3,11 +3,23 @@ package trisoban
 import (
 	"bufio"
 	"fmt"
-	tl "github.com/JoelOtter/termloop"
 	"log"
 	"os"
 	"strings"
+
+	tl "github.com/JoelOtter/termloop"
 )
+
+// NewEntityCollection creates a collection of all the entities in the game
+func NewEntityCollection() *EntityCollection {
+	col := new(EntityCollection)
+	col.Crate = []*Crate{}
+	col.Goal = []*Goal{}
+	col.Player = NewPlayer()
+	col.Border = NewBorder()
+
+	return col
+}
 
 // NewCrate creates an entity for the crate and returns a pointer to a crate
 func NewCrate() *Crate {

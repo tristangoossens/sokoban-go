@@ -76,11 +76,7 @@ func NewGameScreen() *Gamescreen {
 	instructionsFile, _ := ioutil.ReadFile("util/instructions.txt")
 	instructionsEntity := tl.NewEntityFromCanvas(55, 5, tl.CanvasFromString(string(instructionsFile)))
 
-	border = NewBorder()
-	crate = NewCrate()
-	goal = NewGoal()
-	player = NewPlayer()
-
+	col = NewEntityCollection()
 	MapLevel()
 
 	gs.AddEntity(gs.CurrentLevel)
