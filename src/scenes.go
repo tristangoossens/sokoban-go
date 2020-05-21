@@ -41,6 +41,7 @@ func NewGameScreen() *Gamescreen {
 	})
 
 	gs.CurrentLevel = tl.NewText(44, 2, fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels), tl.ColorWhite, tl.ColorBlack)
+	gs.LevelCompleted = tl.NewText(45, 27, "", tl.ColorWhite, tl.ColorBlack)
 
 	uiFile, _ := ioutil.ReadFile("data/ui/gameui.txt")
 	gs.UI = tl.NewEntityFromCanvas(0, 0, tl.CanvasFromString(string(uiFile)))
@@ -50,25 +51,15 @@ func NewGameScreen() *Gamescreen {
 		tl.NewText(37, 29, "F2: Previous level", tl.ColorWhite, tl.ColorBlack),
 	}
 
-	col = NewEntityCollection()
-	MapLevel()
 	gs.AddEntity(gs.UI)
 	gs.AddEntity(gs.CurrentLevel)
-	gs.AddEntity(col.Border)
+	gs.AddEntity(gs.LevelCompleted)
 
 	for _, v := range gs.Instructions {
 		gs.AddEntity(v)
 	}
 
-	for _, v := range col.Goals {
-		gs.AddEntity(v)
-	}
-
-	for _, v := range col.Crates {
-		gs.AddEntity(v)
-	}
-
-	gs.AddEntity(col.Player)
+	gs.AddGameEntities()
 
 	return gs
 }

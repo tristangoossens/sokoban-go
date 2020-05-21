@@ -16,7 +16,7 @@ func (ts *Titlescreen) Tick(event tl.Event) {
 			gs = NewGameScreen()
 			game.Screen().SetLevel(gs)
 
-		case tl.KeyBackspace:
+		case tl.KeyEsc:
 			CurrentLevel = LoadLevel()
 			gs = NewGameScreen()
 			game.Screen().SetLevel(gs)
@@ -39,55 +39,15 @@ func (g *Gamescreen) Tick(event tl.Event) {
 		case tl.KeyF3:
 			RestartLevel()
 		case tl.KeyF1:
-			if crate.reachedGoal {
-				ChangeLevel("NEXT")
+			if gs.CheckLevelCompletion() {
+				gs.ChangeLevel("next")
 			}
 		case tl.KeyF2:
-			if crate.reachedGoal {
-				ChangeLevel("PREVIOUS")
+			if gs.CheckLevelCompletion() {
+				gs.ChangeLevel("previous")
 			}
 		case tl.KeyInsert:
 			ioutil.WriteFile("util/loadgame.txt", []byte(strconv.Itoa(CurrentLevel)), 0644)
 		}
 	}
-}
-
-// Move calculate and check collisions for the current move
-func (g *Gamescreen) Move(dir string) {
-	for ci, cv := range col.Crates {
-		if col.Player.CheckCrateCollision(cv, dir) {
-			col.Player.SetPosition(col.Player.X, col.Player.Y)
-			cv.MoveCrate(dir, false)
-			crateslicecopy := cv.CopyCrateSlice()
-			if cv.CheckBorderCollision() {
-				col.Player.MovePlayer(dir, true)
-				cv.MoveCrate(dir, true)
-			}
-			if cv.CheckCrateCollision(cv.RemoveCrate(crateslicecopy, ci)) {
-				cv.MoveCrate(dir, true)
-				col.Player.MovePlayer(dir, true)
-			}
-			for _, gv := range col.Goals {
-				if cv.CheckGoalCollision(gv) {
-					if cv.CheckActivatedGoalCollision(gv) {
-						col.Player.MovePlayer(dir, true)
-						cv.MoveCrate(dir, true)
-					} else {
-						gv.isActivated = true
-						gs.RemoveEntity(cv)
-						col.Crates = cv.RemoveCrate(col.Crates, ci)
-					}
-				}
-			}
-		}
-	}
-	if col.Player.CheckBorderCollision(dir) {
-		col.Player.MovePlayer(dir, true)
-	}
-	for _, gv := range col.Goals {
-		if col.Player.CheckActivatedGoalCollision(gv, dir) {
-			col.Player.MovePlayer(dir, true)
-		}
-	}
-	col.Player.MovePlayer(dir, false)
 }

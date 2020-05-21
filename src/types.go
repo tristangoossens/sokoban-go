@@ -35,9 +35,10 @@ type Titlescreen struct {
 // Gamescreen is the level for the gamescreen, this contains the currentleveltext and the beatlevel text.
 type Gamescreen struct {
 	tl.Level
-	UI           *tl.Entity
-	CurrentLevel *tl.Text
-	Instructions []*tl.Text
+	UI             *tl.Entity
+	CurrentLevel   *tl.Text
+	Instructions   []*tl.Text
+	LevelCompleted *tl.Text
 }
 
 // Entities
