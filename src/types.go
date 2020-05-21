@@ -2,28 +2,15 @@ package trisoban
 
 import tl "github.com/JoelOtter/termloop"
 
-// Variables
-
-var levelslice []string
-
 var game *tl.Game
 var gs *Gamescreen
-var border *Border
-var crate *Crate
-var goal *Goal
-var player *Player
 var col *EntityCollection
-
-var prevX int
-var prevY int
 
 // CurrentLevel this integer will determine the level you are currently on.
 var CurrentLevel int
 
 // TotalLevels this integer represents the total amount of levels.
-var TotalLevels = 20
-
-// Levels
+var TotalLevels int
 
 // Titlescreen is the level for the titlescreen, this contains the logo and the instruction text.
 type Titlescreen struct {
@@ -35,10 +22,10 @@ type Titlescreen struct {
 // Gamescreen is the level for the gamescreen, this contains the currentleveltext and the beatlevel text.
 type Gamescreen struct {
 	tl.Level
-	UI             *tl.Entity
-	CurrentLevel   *tl.Text
-	Instructions   []*tl.Text
-	LevelCompleted *tl.Text
+	UI               *tl.Entity
+	CurrentLevelText *tl.Text
+	Instructions     []*tl.Text
+	LevelCompleted   *tl.Text
 }
 
 // Entities
@@ -77,8 +64,6 @@ type Goal struct {
 	Coordinates
 	isActivated bool
 }
-
-// Other
 
 // Coordinates is used to save the X and Y coordinates of multiple entities.
 type Coordinates struct {

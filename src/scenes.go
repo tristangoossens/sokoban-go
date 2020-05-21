@@ -40,8 +40,11 @@ func NewGameScreen() *Gamescreen {
 		Bg: tl.ColorBlack,
 	})
 
-	gs.CurrentLevel = tl.NewText(44, 2, fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels), tl.ColorWhite, tl.ColorBlack)
 	gs.LevelCompleted = tl.NewText(45, 27, "", tl.ColorWhite, tl.ColorBlack)
+
+	lvlFiles, _ := ioutil.ReadDir("data/lvl")
+	TotalLevels = len(lvlFiles)
+	gs.CurrentLevelText = tl.NewText(44, 2, fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels), tl.ColorWhite, tl.ColorBlack)
 
 	uiFile, _ := ioutil.ReadFile("data/ui/gameui.txt")
 	gs.UI = tl.NewEntityFromCanvas(0, 0, tl.CanvasFromString(string(uiFile)))
@@ -52,7 +55,7 @@ func NewGameScreen() *Gamescreen {
 	}
 
 	gs.AddEntity(gs.UI)
-	gs.AddEntity(gs.CurrentLevel)
+	gs.AddEntity(gs.CurrentLevelText)
 	gs.AddEntity(gs.LevelCompleted)
 
 	for _, v := range gs.Instructions {

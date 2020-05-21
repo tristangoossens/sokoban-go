@@ -22,7 +22,7 @@ func StartGame() {
 
 //LoadLevel load level from last saved lvl
 func LoadLevel() int {
-	dat, err := ioutil.ReadFile("util/ui/loadgame.txt")
+	dat, err := ioutil.ReadFile("data/ui/loadgame.txt")
 	if err != nil {
 		log.Fatalf("Error writing to file: %s", err)
 	}
@@ -33,7 +33,8 @@ func LoadLevel() int {
 // AddGameEntities create all entities on the game screen and map level
 func (gs *Gamescreen) AddGameEntities() {
 	col = NewEntityCollection()
-	MapLevel()
+
+	gs.MapLevel()
 
 	for _, v := range col.Goals {
 		gs.AddEntity(v)
@@ -136,7 +137,7 @@ func RestartLevel() {
 
 // UpdateText will update the text on the game screen. This function is called when the level is changed
 func (gs *Gamescreen) UpdateText() {
-	gs.CurrentLevel.SetText(fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels))
+	gs.CurrentLevelText.SetText(fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels))
 	gs.LevelCompleted.SetText("")
 	gs.Instructions[0].SetColor(tl.ColorWhite, tl.ColorBlack)
 	gs.Instructions[1].SetColor(tl.ColorWhite, tl.ColorBlack)
