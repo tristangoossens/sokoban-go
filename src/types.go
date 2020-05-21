@@ -28,15 +28,16 @@ var TotalLevels = 20
 // Titlescreen is the level for the titlescreen, this contains the logo and the instruction text.
 type Titlescreen struct {
 	tl.Level
-	Logo *tl.Entity
-	Text []*tl.Text
+	Mainmenu   *tl.Entity
+	EntityText []*tl.Text
 }
 
 // Gamescreen is the level for the gamescreen, this contains the currentleveltext and the beatlevel text.
 type Gamescreen struct {
 	tl.Level
+	UI           *tl.Entity
 	CurrentLevel *tl.Text
-	BeatLevel    *tl.Text
+	Instructions []*tl.Text
 }
 
 // Entities

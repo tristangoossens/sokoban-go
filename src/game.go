@@ -22,23 +22,7 @@ func StartGame() {
 
 // RestartLevel is a function that will reset the level by setting all of the entites to their default positions.
 func RestartLevel() {
-	gs.RemoveEntity(border)
-	gs.RemoveEntity(crate)
-	gs.RemoveEntity(goal)
-	gs.RemoveEntity(player)
-	gs.RemoveEntity(gs.BeatLevel)
 
-	border = NewBorder()
-	crate = NewCrate()
-	goal = NewGoal()
-	player = NewPlayer()
-
-	MapLevel()
-
-	gs.AddEntity(border)
-	gs.AddEntity(goal)
-	gs.AddEntity(crate)
-	gs.AddEntity(player)
 }
 
 // NewTitleScreen will create a new titlescreen and read from the logo file to print out the ASCII art logo. This function will return a pointer to titlescreen.
@@ -48,19 +32,22 @@ func NewTitleScreen() *Titlescreen {
 		Bg: tl.ColorBlack,
 	})
 
-	logofile, _ := ioutil.ReadFile("data/ui/logo.text")
-	logoEntity := tl.NewEntityFromCanvas(10, 3, tl.CanvasFromString(string(logofile)))
+	logofile, _ := ioutil.ReadFile("data/ui/mainmenu.text")
+	ts.Mainmenu = tl.NewEntityFromCanvas(0, 0, tl.CanvasFromString(string(logofile)))
 
-	ts.Text = []*tl.Text{
-		tl.NewText(10, 20, "Press ENTER to start!", tl.ColorWhite, tl.ColorBlack),
-		tl.NewText(10, 22, "Press BACKSPACE to start from last saved level!", tl.ColorWhite, tl.ColorBlack),
+	ts.EntityText = []*tl.Text{
+		tl.NewText(69, 21, "▓", tl.ColorRed, tl.ColorDefault),
+		tl.NewText(69, 22, "▓", tl.ColorBlue, tl.ColorDefault),
+		tl.NewText(69, 23, "▓", tl.ColorWhite, tl.ColorDefault),
+		tl.NewText(69, 24, "░", tl.ColorYellow, tl.ColorDefault),
+		tl.NewText(69, 25, "▓", tl.ColorGreen, tl.ColorDefault),
 	}
 
-	for _, v := range ts.Text {
-		ts.Level.AddEntity(v)
+	for _, v := range ts.EntityText {
+		ts.AddEntity(v)
 	}
 
-	ts.Level.AddEntity(logoEntity)
+	ts.AddEntity(ts.Mainmenu)
 	return ts
 }
 
@@ -71,17 +58,25 @@ func NewGameScreen() *Gamescreen {
 		Bg: tl.ColorBlack,
 	})
 
-	gs.CurrentLevel = tl.NewText(69, 3, fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels), tl.ColorWhite, tl.ColorBlack)
+	gs.CurrentLevel = tl.NewText(44, 2, fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels), tl.ColorWhite, tl.ColorBlack)
 
-	instructionsFile, _ := ioutil.ReadFile("data/ui/instructions.txt")
-	instructionsEntity := tl.NewEntityFromCanvas(55, 5, tl.CanvasFromString(string(instructionsFile)))
+	uiFile, _ := ioutil.ReadFile("data/ui/gameui.txt")
+	gs.UI = tl.NewEntityFromCanvas(0, 0, tl.CanvasFromString(string(uiFile)))
+
+	gs.Instructions = []*tl.Text{
+		tl.NewText(11, 29, "F1: Next level", tl.ColorWhite, tl.ColorBlack),
+		tl.NewText(37, 29, "F2: Previous level", tl.ColorWhite, tl.ColorBlack),
+	}
 
 	col = NewEntityCollection()
 	MapLevel()
-
+	gs.AddEntity(gs.UI)
 	gs.AddEntity(gs.CurrentLevel)
-	gs.AddEntity(instructionsEntity)
 	gs.AddEntity(col.Border)
+
+	for _, v := range gs.Instructions {
+		gs.AddEntity(v)
+	}
 
 	for _, v := range col.Goals {
 		gs.AddEntity(v)
@@ -103,42 +98,12 @@ func UpdateLevelText() {
 
 // LevelCompleted will remove the crate entity and print a text when the level is beaten.
 func LevelCompleted() {
-	crate.reachedGoal = true
-	gs.BeatLevel = tl.NewText(7, 20, "Congratulations!, You have beaten this level!", tl.ColorGreen, tl.ColorBlack)
-	gs.RemoveEntity(crate)
-	gs.AddEntity(gs.BeatLevel)
 
 }
 
 // ChangeLevel will change the level given the player input(F1: "NEXT", F2: "PREVIOUS").
 func ChangeLevel(s string) {
-	crate.reachedGoal = false
 
-	switch s {
-	case "NEXT":
-		CurrentLevel += 1
-	case "PREVIOUS":
-		CurrentLevel -= 1
-	}
-
-	gs.RemoveEntity(border)
-	gs.RemoveEntity(player)
-	gs.RemoveEntity(goal)
-	gs.RemoveEntity(gs.BeatLevel)
-
-	border = NewBorder()
-	crate = NewCrate()
-	goal = NewGoal()
-	player = NewPlayer()
-
-	MapLevel()
-
-	gs.AddEntity(border)
-	gs.AddEntity(goal)
-	gs.AddEntity(crate)
-	gs.AddEntity(player)
-
-	UpdateLevelText()
 }
 
 //LoadLevel load level from last saved lvl
