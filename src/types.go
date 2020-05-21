@@ -25,6 +25,7 @@ type Gamescreen struct {
 	UI               *tl.Entity
 	CurrentLevelText *tl.Text
 	Instructions     []*tl.Text
+	SaveConfirmation *tl.Text
 	LevelCompleted   *tl.Text
 }
 

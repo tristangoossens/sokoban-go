@@ -1,9 +1,6 @@
 package trisoban
 
 import (
-	"io/ioutil"
-	"strconv"
-
 	tl "github.com/JoelOtter/termloop"
 )
 
@@ -16,7 +13,7 @@ func (ts *Titlescreen) Tick(event tl.Event) {
 			gs = NewGameScreen()
 			game.Screen().SetLevel(gs)
 
-		case tl.KeyEsc:
+		case tl.KeyBackspace:
 			CurrentLevel = LoadLevel()
 			gs = NewGameScreen()
 			game.Screen().SetLevel(gs)
@@ -25,29 +22,31 @@ func (ts *Titlescreen) Tick(event tl.Event) {
 }
 
 // Tick listens to the gamescreen input and handles it accordingly.
-func (g *Gamescreen) Tick(event tl.Event) {
+func (gs *Gamescreen) Tick(event tl.Event) {
 	if event.Type == tl.EventKey {
 		switch event.Key {
 		case tl.KeyArrowUp:
-			g.Move("up")
+			gs.Move("up")
 		case tl.KeyArrowDown:
-			g.Move("down")
+			gs.Move("down")
 		case tl.KeyArrowLeft:
-			g.Move("left")
+			gs.Move("left")
 		case tl.KeyArrowRight:
-			g.Move("right")
+			gs.Move("right")
 		case tl.KeyF3:
-			RestartLevel()
+			gs.RestartLevel()
 		case tl.KeyF1:
+			gs.SaveConfirmation.SetText("")
 			if gs.CheckLevelCompletion() {
 				gs.ChangeLevel("next")
 			}
 		case tl.KeyF2:
+			gs.SaveConfirmation.SetText("")
 			if gs.CheckLevelCompletion() {
 				gs.ChangeLevel("previous")
 			}
 		case tl.KeyInsert:
-			ioutil.WriteFile("util/loadgame.txt", []byte(strconv.Itoa(CurrentLevel)), 0644)
+			gs.SaveGame()
 		}
 	}
 }

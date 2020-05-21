@@ -41,6 +41,7 @@ func NewGameScreen() *Gamescreen {
 	})
 
 	gs.LevelCompleted = tl.NewText(45, 27, "", tl.ColorWhite, tl.ColorBlack)
+	gs.SaveConfirmation = tl.NewText(45, 26, "", tl.ColorWhite, tl.ColorBlack)
 
 	lvlFiles, _ := ioutil.ReadDir("data/lvl")
 	TotalLevels = len(lvlFiles)
@@ -52,11 +53,13 @@ func NewGameScreen() *Gamescreen {
 	gs.Instructions = []*tl.Text{
 		tl.NewText(11, 29, "F1: Next level", tl.ColorWhite, tl.ColorBlack),
 		tl.NewText(37, 29, "F2: Previous level", tl.ColorWhite, tl.ColorBlack),
+		tl.NewText(96, 29, "Ins: Save game", tl.ColorWhite, tl.ColorBlack),
 	}
 
 	gs.AddEntity(gs.UI)
 	gs.AddEntity(gs.CurrentLevelText)
 	gs.AddEntity(gs.LevelCompleted)
+	gs.AddEntity(gs.SaveConfirmation)
 
 	for _, v := range gs.Instructions {
 		gs.AddEntity(v)

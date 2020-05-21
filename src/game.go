@@ -129,8 +129,14 @@ func (gs *Gamescreen) ChangeLevel(selection string) {
 	gs.AddGameEntities()
 }
 
+// SaveGame save your current level to a file and show a confirmation
+func (gs *Gamescreen) SaveGame() {
+	gs.LevelCompleted.SetText("Your game has been saved")
+	ioutil.WriteFile("data/ui/loadgame.txt", []byte(strconv.Itoa(CurrentLevel)), 0644)
+}
+
 // RestartLevel is a function that will reset the level by setting all of the entites to their default positions.
-func RestartLevel() {
+func (gs *Gamescreen) RestartLevel() {
 	gs.RemoveGameEntities()
 	gs.AddGameEntities()
 }
