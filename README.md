@@ -43,7 +43,8 @@ go build run.go
 ## Bucket list for future versions
 
 - [ ] **Read levels from 1 file(instead of 20).**
-- [ ] **Implement support for multiple crates and goals.**
+- [x] **Implement support for multiple crates and goals.**
+- [ ] Clean code and get rid of unnecessary variables.
 - [ ] Add more levels(goal is around 40-50).
 - [ ] Create a new UI to support bigger levels.
 - [ ] Add a debugging system to debug the entities.
