@@ -4,14 +4,23 @@ import (
 	tl "github.com/JoelOtter/termloop"
 )
 
-// CheckBorderCollision will check if the crate has a collision with the border. If so, this will return true.
-func (crate *Crate) CheckBorderCollision(x, y int) bool {
-	c := Coordinates{
-		X: x,
-		Y: y,
-	}
+// RemoveCrate remove a crate from the entity slice
+func (crate *Crate) RemoveCrate(slice []*Crate, i int) []*Crate {
+	copy(slice[i:], slice[i+1:])
+	return slice[:len(slice)-1]
+}
 
-	_, exists := border.bCoords[c]
+// CopyCrateSlice create a duplicate of the crate entity slice
+func (crate *Crate) CopyCrateSlice() []*Crate {
+	slicecopy := make([]*Crate, len(col.Crates))
+	copy(slicecopy, col.Crates)
+
+	return slicecopy
+}
+
+// CheckBorderCollision will check if the crate has a collision with the border. If so, this will return true.
+func (crate *Crate) CheckBorderCollision() bool {
+	_, exists := col.Border.bCoords[crate.Coordinates]
 
 	if exists {
 		return true
@@ -19,16 +28,58 @@ func (crate *Crate) CheckBorderCollision(x, y int) bool {
 	return false
 }
 
-// CheckGoalCollision check if the crate is colliding with the goal, if so it will return true.
-func (crate *Crate) CheckGoalCollision(x, y int) bool {
-	c := Coordinates{
-		X: x,
-		Y: y,
+//CheckCrateCollision check whether the given crate is colliding with any other crate
+func (crate *Crate) CheckCrateCollision(crates []*Crate) bool {
+	for _, v := range crates {
+		if crate.Coordinates == v.Coordinates {
+			return true
+		}
 	}
-	if goal.Coordinates == c {
+	return false
+}
+
+// CheckGoalCollision check if the crate is colliding with the goal, if so it will return true.
+func (crate *Crate) CheckGoalCollision(g *Goal) bool {
+	if crate.Coordinates == g.Coordinates {
 		return true
 	}
 	return false
+}
+
+// CheckActivatedGoalCollision check if the crate is colliding with an activated goal, if so it will return true.
+func (crate *Crate) CheckActivatedGoalCollision(g *Goal) bool {
+	if g.isActivated && crate.Coordinates == g.Coordinates {
+		return true
+	}
+	return false
+}
+
+// MoveCrate move the crate if there is no collision, else it will take a step back(entity doesn't move)
+func (crate *Crate) MoveCrate(dir string, colliding bool) {
+	if colliding {
+		switch dir {
+		case "up":
+			crate.Y = crate.Y + 1
+		case "down":
+			crate.Y = crate.Y - 1
+		case "left":
+			crate.X = crate.X + 1
+		case "right":
+			crate.X = crate.X - 1
+		}
+	} else {
+		switch dir {
+		case "up":
+			crate.Y = crate.Y - 1
+		case "down":
+			crate.Y = crate.Y + 1
+		case "left":
+			crate.X = crate.X - 1
+		case "right":
+			crate.X = crate.X + 1
+		}
+	}
+	crate.SetPosition(crate.X, crate.Y)
 }
 
 // Draw draws the crate given the coordinates, this will update every tick.
