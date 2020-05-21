@@ -1,7 +1,7 @@
 package main
 
 import (
-	so "github.com/tristangoossens/sokoban-go/game"
+	so "github.com/tristangoossens/sokoban-go/src"
 )
 
 func main() {

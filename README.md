@@ -1,6 +1,6 @@
 ## Sokoban [![GoDoc](https://godoc.org/github.com/tristangoossens/sokoban-go?status.svg)](https://godoc.org/github.com/tristangoossens/sokoban-go) [![Go Report Card](https://goreportcard.com/badge/github.com/tristangoossens/sokoban-go)](https://goreportcard.com/report/github.com/tristangoossens/sokoban-go) [![Build Status](https://travis-ci.com/tristangoossens/sokoban-go.svg?branch=master)](https://travis-ci.com/tristangoossens/sokoban-go)
 
-![Logo](https://github.com/tristangoossens/sokoban-go/blob/master/images/logo.png)
+![Logo](https://github.com/tristangoossens/sokoban-go/blob/master/img/logo.png)
 
 Retro game sokoban clone made in Go! Created by tristangoossens. ![GitHub followers](https://img.shields.io/github/followers/tristangoossens?style=social)  
 Please star this repository to help my project grow! ![GitHub stars](https://img.shields.io/github/stars/tristangoossens/sokoban-go?style=social)
@@ -11,11 +11,11 @@ Please star this repository to help my project grow! ![GitHub stars](https://img
 
 Here is a screenshot of sokoban's titlescreen! 
 
-![Titlescreen](https://github.com/tristangoossens/sokoban-go/blob/master/images/game-titlescreen.png)
+![Titlescreen](https://github.com/tristangoossens/sokoban-go/blob/master/img/game-titlescreen.png)
 
 Screenshot of sokoban's first level!
 
-![Level1](https://github.com/tristangoossens/sokoban-go/blob/master/images/game-gamescreen.png)
+![Level1](https://github.com/tristangoossens/sokoban-go/blob/master/img/game-gamescreen.png)
 
 ## How to play
 

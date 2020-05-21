@@ -60,7 +60,7 @@ func MapLevel() {
 
 	col.Border.bCoords = make(map[Coordinates]int)
 
-	file, err := os.Open(fmt.Sprintf("util/levels/level%d.txt", CurrentLevel))
+	file, err := os.Open(fmt.Sprintf("data/lvl/level%d.txt", CurrentLevel))
 	if err != nil {
 		log.Fatalf("Level with number %d was not found", CurrentLevel)
 	}

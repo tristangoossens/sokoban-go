@@ -48,7 +48,7 @@ func NewTitleScreen() *Titlescreen {
 		Bg: tl.ColorBlack,
 	})
 
-	logofile, _ := ioutil.ReadFile("util/logo.text")
+	logofile, _ := ioutil.ReadFile("data/ui/logo.text")
 	logoEntity := tl.NewEntityFromCanvas(10, 3, tl.CanvasFromString(string(logofile)))
 
 	ts.Text = []*tl.Text{
@@ -73,7 +73,7 @@ func NewGameScreen() *Gamescreen {
 
 	gs.CurrentLevel = tl.NewText(69, 3, fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels), tl.ColorWhite, tl.ColorBlack)
 
-	instructionsFile, _ := ioutil.ReadFile("util/instructions.txt")
+	instructionsFile, _ := ioutil.ReadFile("data/ui/instructions.txt")
 	instructionsEntity := tl.NewEntityFromCanvas(55, 5, tl.CanvasFromString(string(instructionsFile)))
 
 	col = NewEntityCollection()
