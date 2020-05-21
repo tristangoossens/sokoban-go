@@ -42,22 +42,23 @@ go build run.go
 
 ## Bucket list for future versions
 
-- [ ] **Read levels from 1 file(instead of 20).**
 - [x] **Implement support for multiple crates and goals.**
-- [ ] Clean code and get rid of unnecessary variables.
-- [ ] Add more levels(goal is around 40-50).
-- [ ] Create a new UI to support bigger levels.
-- [ ] Add a debugging system to debug the entities.
-- [ ] Add soundeffects for events.
-- [ ] Add new functionality.
+- [ ] (Could)Read levels from 1 file(instead of 20).
+- [x] Get rid of unnecessary variables.
+- [ ] Clean up code.
+- [ ] Add more levels(goal is around 30, more for v3).
+- [x] Create a new UI to support bigger levels.
+- [ ] (Could)Add a debugging system to debug the entities.
+- [ ] (Could)Add soundeffects for events.
+- [ ] Add new functionality. (v3)
     - [ ] Teleporter.
     - [ ] Player trap.
     - [ ] One Way Wall.
-- [ ] Implement a level selection ui.
+- [ ] Implement a level selection ui. (v3)
 - [x] Implement save current level button.
-- [ ] Add a timer to the gamescreen to time your best times.
-    - [ ] Save your best time to a markdown file(table).
-- [ ] Add test files for all game files
+- [ ] (Should)Add a timer to the gamescreen to time your best times.
+    - [ ] (Should)Save your best time to a markdown file(table).
+- [ ] Add test files for all game files (v3)
 - [x] Start from last saved level.
 
 *Feel free to help me add the functions above with a pull request!*
