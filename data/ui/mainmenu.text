@@ -1,0 +1,28 @@
+                                         _____       _         _                      
+                                        / ____|     | |       | |                      
+                                       | (___   ___ | | _____ | |__   __ _ _ __  
+                                        \___ \ / _ \| |/ / _ \| '_ \ / _` | '_ \ 
+                                        ____) | (_) |   < (_) | |_) | (_| | | | |
+                                       |_____/ \___/|_|\_\___/|_.__/ \__,_|_| |_|
+
+                                                   by tristangoossens
+                                              
+     ╔═════════════════════════════════════════════════════════════════════════════════╦══════════════════════════╗
+     ║                                                                                 ║                          ║
+     ║  Press Enter to start the game from the start!                                  ║  Instructions:           ║
+     ║  Press Backspace to start the game from your savefile!                          ║                          ║
+     ║                                                                                 ║                          ║ 
+     ║                                                                                 ║  ↑: Move up              ║
+     ║                                                                                 ║  ↓: Move down            ║
+     ║  Contributors:                                                                  ║  ←: Move left            ║
+     ║                                                                                 ║  →: Move right           ║
+     ║  - Code                                                    ╔════════════════════╣                          ║
+     ║    Code and functionality : @tristangoossens               ║  Entities          ║                          ║
+     ║                                                            ╠════════════════════╣                          ║
+     ║  - Level design                                            ║  ▓:Player          ║                          ║
+     ║    Level 1-20 : @tristangoossens                           ║  ▓:Wall            ║  The goal of this game   ║
+     ║                                                            ║  ▓:Crate           ║  is to push all crates   ║
+     ║                                                            ║  ░:Goal            ║  into the goals without  ║
+     ║                                                            ║  ▓:Activated goal  ║  softlocking yourself    ║
+     ╚════════════════════════════════════════════════════════════╩════════════════════╩══════════════════════════╝
+
