@@ -124,9 +124,13 @@ func (gs *Gamescreen) ChangeLevel(selection string) {
 		CurrentLevel--
 	}
 
-	gs.RemoveGameEntities()
-	gs.UpdateText()
-	gs.AddGameEntities()
+	if CurrentLevel <= TotalLevels {
+		gs.RemoveGameEntities()
+		gs.UpdateText()
+		gs.AddGameEntities()
+	} else {
+
+	}
 }
 
 // SaveGame save your current level to a file and show a confirmation
