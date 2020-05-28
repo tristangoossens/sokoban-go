@@ -34,11 +34,15 @@ func (gs *Gamescreen) Tick(event tl.Event) {
 		case tl.KeyArrowRight:
 			gs.Move("right")
 		case tl.KeyF3:
-			gs.RestartLevel()
+			if !gs.CheckLevelCompletion() {
+				gs.RestartLevel()
+			}
 		case tl.KeyF1:
 			gs.SaveConfirmation.SetText("")
 			if gs.CheckLevelCompletion() {
-				gs.ChangeLevel("next")
+				if CurrentLevel+1 == TotalLevels {
+					gs.ChangeLevel("next")
+				}
 			}
 		case tl.KeyF2:
 			gs.SaveConfirmation.SetText("")
