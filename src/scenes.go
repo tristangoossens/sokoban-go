@@ -42,6 +42,7 @@ func NewGameScreen() *Gamescreen {
 
 	gs.LevelCompleted = tl.NewText(45, 27, "", tl.ColorWhite, tl.ColorBlack)
 	gs.SaveConfirmation = tl.NewText(45, 26, "", tl.ColorWhite, tl.ColorBlack)
+	gs.Time = tl.NewText(52, 4, "", tl.ColorWhite, tl.ColorBlack)
 
 	lvlFiles, _ := ioutil.ReadDir("data/lvl")
 	TotalLevels = len(lvlFiles)
@@ -58,6 +59,7 @@ func NewGameScreen() *Gamescreen {
 
 	gs.AddEntity(gs.UI)
 	gs.AddEntity(gs.CurrentLevelText)
+	gs.AddEntity(gs.Time)
 	gs.AddEntity(gs.LevelCompleted)
 	gs.AddEntity(gs.SaveConfirmation)
 
@@ -81,6 +83,12 @@ func NewGameCompletionScreen() *GameCompletionScreen {
 	gcs.UI = tl.NewEntityFromCanvas(0, 0, tl.CanvasFromString(string(UIFile)))
 
 	gcs.AddEntity(gcs.UI)
+
+	if sw != nil {
+		sw.Stop()
+		gcs.FinalTime = tl.NewText(48, 14, "Final Time: "+sw.FinishTime(), tl.ColorWhite, tl.ColorBlack)
+		gcs.AddEntity(gcs.FinalTime)
+	}
 
 	return gcs
 }

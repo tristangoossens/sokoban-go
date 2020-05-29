@@ -107,6 +107,9 @@ func (gs *Gamescreen) Move(dir string) {
 func (gs *Gamescreen) CheckLevelCompletion() bool {
 	if len(col.Crates) == 0 {
 		gs.LevelCompleted.SetText("You have completed this level")
+		if sw != nil {
+			gs.Time.SetText("Time: " + sw.CheckpointTime())
+		}
 		gs.Instructions[0].SetColor(tl.ColorGreen, tl.ColorBlack)
 		gs.Instructions[1].SetColor(tl.ColorRed, tl.ColorBlack)
 
@@ -150,6 +153,7 @@ func (gs *Gamescreen) RestartLevel() {
 func (gs *Gamescreen) UpdateText() {
 	gs.CurrentLevelText.SetText(fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels))
 	gs.LevelCompleted.SetText("")
+	gs.Time.SetText("")
 	gs.Instructions[0].SetColor(tl.ColorWhite, tl.ColorBlack)
 	gs.Instructions[1].SetColor(tl.ColorWhite, tl.ColorBlack)
 }

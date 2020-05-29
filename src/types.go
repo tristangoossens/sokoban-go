@@ -24,6 +24,7 @@ type Gamescreen struct {
 	tl.Level
 	UI               *tl.Entity
 	CurrentLevelText *tl.Text
+	Time             *tl.Text
 	Instructions     []*tl.Text
 	SaveConfirmation *tl.Text
 	LevelCompleted   *tl.Text
@@ -32,8 +33,9 @@ type Gamescreen struct {
 // GameCompletionScreen is the level of the victory screen, displaying when you finish all levels.
 type GameCompletionScreen struct {
 	tl.Level
-	UI       *tl.Entity
-	SaveTime *tl.Text
+	UI        *tl.Entity
+	FinalTime *tl.Text
+	SaveTime  *tl.Text
 }
 
 //EntityCollection collection of all entities within the game.

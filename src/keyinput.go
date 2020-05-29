@@ -11,6 +11,7 @@ func (ts *Titlescreen) Tick(event tl.Event) {
 		case tl.KeyEnter:
 			CurrentLevel = 1
 			gs = NewGameScreen()
+			sw = InitTimer()
 			game.Screen().SetLevel(gs)
 
 		case tl.KeyBackspace:

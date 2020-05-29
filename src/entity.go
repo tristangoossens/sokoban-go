@@ -56,7 +56,7 @@ func NewGoal() *Goal {
 // MapLevel reads from a level file and maps the coordinates for all of the entities
 func (gs *Gamescreen) MapLevel() {
 	var startx = 7 // Determines at which coordinate the rendering starts
-	var starty = 4 // Determines at which coordinate the rendering starts
+	var starty = 6 // Determines at which coordinate the rendering starts
 
 	col.Border.bCoords = make(map[Coordinates]int)
 

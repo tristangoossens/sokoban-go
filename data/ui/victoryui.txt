@@ -16,7 +16,7 @@
      ╔════════════════════════════════════════════════════════════════════════════════════════════════════════════╗
      ║                                                                                                            ║
      ║  Thank you for playing through all levels of sokoban.                                                      ║
-     ║  Please consider leaving a star-rating and following tristangoossens on GitHub for mor.                    ║ 
+     ║  Please consider leaving a star-rating and following tristangoossens on GitHub for more.                   ║ 
      ║                                                                                                            ║ 
      ║                                                                                                            ║
      ║  Press [F1] to go to the main menu                                                                         ║                                                                                

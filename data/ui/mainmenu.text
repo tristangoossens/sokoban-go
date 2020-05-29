@@ -13,8 +13,8 @@
      ║  Press Backspace to start the game from your savefile!                          ║                          ║
      ║                                                                                 ║                          ║ 
      ║                                                                                 ║  ↑: Move up              ║
-     ║                                                                                 ║  ↓: Move down            ║
-     ║  Contributors:                                                                  ║  ←: Move left            ║
+     ║  To use the timer please start from level 1.                                    ║  ↓: Move down            ║
+     ║                                                                                 ║  ←: Move left            ║
      ║                                                                                 ║  →: Move right           ║
      ║  - Code                                                    ╔════════════════════╣                          ║
      ║    Code and functionality : @tristangoossens               ║  Entities          ║                          ║
