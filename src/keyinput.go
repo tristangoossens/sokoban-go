@@ -40,9 +40,7 @@ func (gs *Gamescreen) Tick(event tl.Event) {
 		case tl.KeyF1:
 			gs.SaveConfirmation.SetText("")
 			if gs.CheckLevelCompletion() {
-				if CurrentLevel+1 == TotalLevels {
-					gs.ChangeLevel("next")
-				}
+				gs.ChangeLevel("next")
 			}
 		case tl.KeyF2:
 			gs.SaveConfirmation.SetText("")

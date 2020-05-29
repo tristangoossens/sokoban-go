@@ -12,14 +12,14 @@ var CurrentLevel int
 // TotalLevels this integer represents the total amount of levels.
 var TotalLevels int
 
-// Titlescreen is the level for the titlescreen, this contains the logo and the instruction text.
+// Titlescreen is the level for the titlescreen.
 type Titlescreen struct {
 	tl.Level
 	Mainmenu   *tl.Entity
 	EntityText []*tl.Text
 }
 
-// Gamescreen is the level for the gamescreen, this contains the currentleveltext and the beatlevel text.
+// Gamescreen is the level for the gamescreen.
 type Gamescreen struct {
 	tl.Level
 	UI               *tl.Entity
@@ -29,9 +29,14 @@ type Gamescreen struct {
 	LevelCompleted   *tl.Text
 }
 
-// Entities
+// GameCompletionScreen is the level of the victory screen, displaying when you finish all levels.
+type GameCompletionScreen struct {
+	tl.Level
+	UI       *tl.Entity
+	SaveTime *tl.Text
+}
 
-//EntityCollection collection of all entities within the game
+//EntityCollection collection of all entities within the game.
 type EntityCollection struct {
 	Player *Player
 	Crates []*Crate

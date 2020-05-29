@@ -124,12 +124,13 @@ func (gs *Gamescreen) ChangeLevel(selection string) {
 		CurrentLevel--
 	}
 
-	if CurrentLevel <= TotalLevels {
+	if CurrentLevel < TotalLevels {
 		gs.RemoveGameEntities()
 		gs.UpdateText()
 		gs.AddGameEntities()
 	} else {
-
+		gcs := NewGameCompletionScreen()
+		game.Screen().SetLevel(gcs)
 	}
 }
 

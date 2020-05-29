@@ -69,3 +69,18 @@ func NewGameScreen() *Gamescreen {
 
 	return gs
 }
+
+// NewGameCompletionScreen will create a new gamecompletionscreen for when all levels are beaten.
+func NewGameCompletionScreen() *GameCompletionScreen {
+	gcs := new(GameCompletionScreen)
+	gcs.Level = tl.NewBaseLevel(tl.Cell{
+		Bg: tl.ColorBlack,
+	})
+
+	UIFile, _ := ioutil.ReadFile("data/ui/victoryui.txt")
+	gcs.UI = tl.NewEntityFromCanvas(0, 0, tl.CanvasFromString(string(UIFile)))
+
+	gcs.AddEntity(gcs.UI)
+
+	return gcs
+}
