@@ -21,6 +21,6 @@
      ║                                                                                                            ║
      ║  Press [F1] to go to the main menu                                                                         ║                                                                                
      ║  Press [F2] to save your time to HIGHSCORES.md                                                             ║
-     ║  Press [Esc] to quit                                                                                       ║
+     ║                                                                                                            ║
      ║                                                                                                            ║
      ╚════════════════════════════════════════════════════════════════════════════════════════════════════════════╝       

@@ -8,6 +8,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 
 	tl "github.com/JoelOtter/termloop"
 )
@@ -202,10 +203,28 @@ func (gs *Gamescreen) ChangeLevel(selection string) {
 	}
 }
 
-// SaveGame save your current level to a file and show a confirmation
+// SaveGame save your current level to a file and show a confirmation.
 func (gs *Gamescreen) SaveGame() {
 	gs.LevelCompleted.SetText("Your game has been saved")
 	ioutil.WriteFile("data/ui/loadgame.txt", []byte(strconv.Itoa(CurrentLevel)), 0644)
+}
+
+// SaveTime save your collective time after beating the game.
+func (gs *GameCompletionScreen) SaveTime(finalTime string) {
+	var newRow []byte
+	datetime := time.Now()
+	newRow = []byte(fmt.Sprintf("\n|" + fmt.Sprintf("%s", datetime.Format("01-02-2006 15:04:05")) + "|" + fmt.Sprintf("%s", finalTime) + "|" + fmt.Sprintf("%d", TotalLevels) + "|"))
+	f, err := os.OpenFile("HIGHSCORES.md", os.O_APPEND|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Fatalf("Error opening file: %s", err)
+	}
+
+	_, err2 := f.Write(newRow)
+	if err2 != nil {
+		log.Fatalf("Error writing to file: %s", err2)
+	}
+
+	f.Close()
 }
 
 // RestartLevel is a function that will reset the level by setting all of the entites to their default positions.

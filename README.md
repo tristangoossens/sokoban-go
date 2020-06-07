@@ -55,8 +55,8 @@ go build run.go
     - [ ] One Way Wall.
 - [ ] Implement a level selection ui. (v3)
 - [x] Implement save current level button.
-- [ ] (Should)Add a timer to the gamescreen to time your best times.
-    - [ ] (Should)Save your best time to a markdown file(table).
+- [x] (Should)Add a timer to the gamescreen to time your best times.
+    - [x] (Should)Save your best time to a markdown file(table).
 - [ ] Add test files for all game files (v3)
 - [x] Start from last saved level.
 

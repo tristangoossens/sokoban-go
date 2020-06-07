@@ -45,11 +45,30 @@ func (gs *Gamescreen) Tick(event tl.Event) {
 			}
 		case tl.KeyF2:
 			gs.SaveConfirmation.SetText("")
-			if gs.CheckLevelCompletion() {
-				gs.ChangeLevel("previous")
+			if sw != nil {
+				sw = nil
+				if gs.CheckLevelCompletion() {
+					gs.ChangeLevel("previous")
+				}
 			}
 		case tl.KeyInsert:
 			gs.SaveGame()
+		}
+	}
+}
+
+// Tick listens to keyinput on the titlescreen, so if the enter key is pressed, the game will start.
+func (gcs *GameCompletionScreen) Tick(event tl.Event) {
+	if event.Type == tl.EventKey {
+		switch event.Key {
+		case tl.KeyF1:
+			ts := NewTitleScreen()
+			game.Screen().SetLevel(ts)
+		case tl.KeyF2:
+			if sw != nil {
+				gcs.SaveTime(gcs.FinalTime)
+				gcs.FinalTimeText.SetColor(tl.ColorGreen, tl.ColorBlack)
+			}
 		}
 	}
 }

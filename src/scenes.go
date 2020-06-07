@@ -28,9 +28,9 @@ type Gamescreen struct {
 // GameCompletionScreen is the level of the victory screen, displaying when you finish all levels.
 type GameCompletionScreen struct {
 	tl.Level
-	UI        *tl.Entity
-	FinalTime *tl.Text
-	SaveTime  *tl.Text
+	UI            *tl.Entity
+	FinalTimeText *tl.Text
+	FinalTime     string
 }
 
 // NewTitleScreen will create a new titlescreen and read from the logo file to print out the ASCII art logo. This function will return a pointer to titlescreen.
@@ -112,8 +112,9 @@ func NewGameCompletionScreen() *GameCompletionScreen {
 
 	if sw != nil {
 		sw.Stop()
-		gcs.FinalTime = tl.NewText(48, 14, "Final Time: "+sw.FinishTime(), tl.ColorWhite, tl.ColorBlack)
-		gcs.AddEntity(gcs.FinalTime)
+		gcs.FinalTimeText = tl.NewText(48, 14, "Final Time: "+sw.FinishTime(), tl.ColorWhite, tl.ColorBlack)
+		gcs.FinalTime = sw.FinishTime()
+		gcs.AddEntity(gcs.FinalTimeText)
 	}
 
 	return gcs
