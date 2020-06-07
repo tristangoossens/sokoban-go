@@ -4,18 +4,26 @@ import (
 	tl "github.com/JoelOtter/termloop"
 )
 
-// RemoveCrate remove a crate from the entity slice
-func (crate *Crate) RemoveCrate(slice []*Crate, i int) []*Crate {
-	copy(slice[i:], slice[i+1:])
-	return slice[:len(slice)-1]
+// Crate inherits the entity making it a drawable, it also inherits the coordinates struct, and has a bool for the rachedgoal check.
+type Crate struct {
+	*tl.Entity
+	Coordinates
 }
 
-// CopyCrateSlice create a duplicate of the crate entity slice
-func (crate *Crate) CopyCrateSlice() []*Crate {
-	slicecopy := make([]*Crate, len(col.Crates))
-	copy(slicecopy, col.Crates)
+// NewCrate creates an entity for the crate and returns a pointer to a crate
+func NewCrate() *Crate {
+	crate := new(Crate)
+	crate.Entity = tl.NewEntity(1, 1, 1, 1)
 
-	return slicecopy
+	return crate
+}
+
+// Draw draws the crate given the coordinates, this will update every tick.
+func (crate *Crate) Draw(screen *tl.Screen) {
+	screen.RenderCell(crate.X, crate.Y, &tl.Cell{
+		Fg: tl.ColorWhite,
+		Ch: '▓',
+	})
 }
 
 // CheckBorderCollision will check if the crate has a collision with the border. If so, this will return true.
@@ -82,10 +90,16 @@ func (crate *Crate) MoveCrate(dir string, colliding bool) {
 	crate.SetPosition(crate.X, crate.Y)
 }
 
-// Draw draws the crate given the coordinates, this will update every tick.
-func (crate *Crate) Draw(screen *tl.Screen) {
-	screen.RenderCell(crate.X, crate.Y, &tl.Cell{
-		Fg: tl.ColorWhite,
-		Ch: '▓',
-	})
+// RemoveCrate remove a crate from the entity slice
+func (crate *Crate) RemoveCrate(slice []*Crate, i int) []*Crate {
+	copy(slice[i:], slice[i+1:])
+	return slice[:len(slice)-1]
+}
+
+// CopyCrateSlice create a duplicate of the crate entity slice
+func (crate *Crate) CopyCrateSlice() []*Crate {
+	slicecopy := make([]*Crate, len(col.Crates))
+	copy(slicecopy, col.Crates)
+
+	return slicecopy
 }

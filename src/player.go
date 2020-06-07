@@ -4,6 +4,29 @@ import (
 	tl "github.com/JoelOtter/termloop"
 )
 
+// Player inherits the entity making it a drawable, it also inherits the border and coordinates struct.
+type Player struct {
+	*tl.Entity
+	Border
+	Coordinates
+}
+
+// NewPlayer creates an entity for the player and returns a pointer to a player
+func NewPlayer() *Player {
+	player := new(Player)
+	player.Entity = tl.NewEntity(1, 1, 1, 1)
+
+	return player
+}
+
+// Draw will print the entity of the player and update it every tick. It also prints the cells for the instructions.
+func (player *Player) Draw(screen *tl.Screen) {
+	screen.RenderCell(player.X, player.Y, &tl.Cell{
+		Fg: tl.ColorRed,
+		Ch: '▓',
+	})
+}
+
 // CheckBorderCollision will check if the player is colliding with the border.
 func (player *Player) CheckBorderCollision(dir string) bool {
 	_, exists := col.Border.bCoords[player.CalculatePlayerCoordinates(dir)]
@@ -84,12 +107,4 @@ func (player *Player) MovePlayer(dir string, colliding bool) {
 		}
 	}
 	player.SetPosition(player.X, player.Y)
-}
-
-// Draw will print the entity of the player and update it every tick. It also prints the cells for the instructions.
-func (player *Player) Draw(screen *tl.Screen) {
-	screen.RenderCell(player.X, player.Y, &tl.Cell{
-		Fg: tl.ColorRed,
-		Ch: '▓',
-	})
 }

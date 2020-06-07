@@ -45,10 +45,9 @@ go build run.go
 - [x] **Implement support for multiple crates and goals.**
 - [ ] (Could)Read levels from 1 file(instead of 20).
 - [x] Get rid of unnecessary variables.
-- [ ] Clean up code.
+- [x] Clean up code.
 - [ ] Add more levels(goal is around 30, more for v3).
 - [x] Create a new UI to support bigger levels.
-- [ ] (Could)Add a debugging system to debug the entities.
 - [ ] (Could)Add soundeffects for events.
 - [ ] Add new functionality. (v3)
     - [ ] Teleporter.

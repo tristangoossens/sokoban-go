@@ -7,6 +7,32 @@ import (
 	tl "github.com/JoelOtter/termloop"
 )
 
+// Titlescreen is the level for the titlescreen.
+type Titlescreen struct {
+	tl.Level
+	Mainmenu   *tl.Entity
+	EntityText []*tl.Text
+}
+
+// Gamescreen is the level for the gamescreen.
+type Gamescreen struct {
+	tl.Level
+	UI               *tl.Entity
+	CurrentLevelText *tl.Text
+	Time             *tl.Text
+	Instructions     []*tl.Text
+	SaveConfirmation *tl.Text
+	LevelCompleted   *tl.Text
+}
+
+// GameCompletionScreen is the level of the victory screen, displaying when you finish all levels.
+type GameCompletionScreen struct {
+	tl.Level
+	UI        *tl.Entity
+	FinalTime *tl.Text
+	SaveTime  *tl.Text
+}
+
 // NewTitleScreen will create a new titlescreen and read from the logo file to print out the ASCII art logo. This function will return a pointer to titlescreen.
 func NewTitleScreen() *Titlescreen {
 	ts := new(Titlescreen)

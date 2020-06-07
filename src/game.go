@@ -1,13 +1,25 @@
 package trisoban
 
 import (
+	"bufio"
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 	"strconv"
+	"strings"
 
 	tl "github.com/JoelOtter/termloop"
 )
+
+var game *tl.Game
+var gs *Gamescreen
+
+// CurrentLevel this integer will determine the level you are currently on.
+var CurrentLevel int
+
+// TotalLevels this integer represents the total amount of levels.
+var TotalLevels int
 
 // StartGame starts the game by creating a new game and adding a titlescreen.
 func StartGame() {
@@ -46,6 +58,59 @@ func (gs *Gamescreen) AddGameEntities() {
 
 	gs.AddEntity(col.Border)
 	gs.AddEntity(col.Player)
+}
+
+// MapLevel reads from a level file and maps the coordinates for all of the entities
+func (gs *Gamescreen) MapLevel() {
+	var startx = 7 // Determines at which coordinate the rendering starts
+	var starty = 6 // Determines at which coordinate the rendering starts
+
+	col.Border.bCoords = make(map[Coordinates]int)
+
+	file, err := os.Open(fmt.Sprintf("data/lvl/level%d.txt", CurrentLevel))
+	if err != nil {
+		log.Fatalf("Level with number %d was not found", CurrentLevel)
+	}
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		xline := strings.Split(scanner.Text(), "")
+		for i, v := range xline {
+			switch v {
+			case "#":
+				col.Border.bCoords[Coordinates{
+					X: startx + i,
+					Y: starty,
+				}] = 1
+			case "P":
+				col.Player.Coordinates = Coordinates{
+					X: startx + i,
+					Y: starty,
+				}
+				col.Player.SetPosition(col.Player.X, col.Player.Y)
+			case "G":
+				g := NewGoal()
+				g.Coordinates = Coordinates{
+					X: startx + i,
+					Y: starty,
+				}
+
+				g.SetPosition(g.X, g.Y)
+				col.Goals = append(col.Goals, g)
+			case "C":
+				c := NewCrate()
+				c.Coordinates = Coordinates{
+					X: startx + i,
+					Y: starty,
+				}
+
+				c.SetPosition(c.X, c.Y)
+				col.Crates = append(col.Crates, c)
+			}
+		}
+		starty++
+	}
+	file.Close()
 }
 
 // RemoveGameEntities delete all entities on the game screen.
