@@ -1,9 +1,20 @@
-## Sokoban [![GoDoc](https://godoc.org/github.com/tristangoossens/sokoban-go?status.svg)](https://godoc.org/github.com/tristangoossens/sokoban-go) [![Go Report Card](https://goreportcard.com/badge/github.com/tristangoossens/sokoban-go)](https://goreportcard.com/report/github.com/tristangoossens/sokoban-go) [![Build Status](https://travis-ci.com/tristangoossens/sokoban-go.svg?branch=master)](https://travis-ci.com/tristangoossens/sokoban-go)
+<h2 style="text-align: center;">Sokoban</h2>
 
-![Logo](https://github.com/tristangoossens/sokoban-go/blob/master/img/sokoban-logo.png)
+<p style="text-align: center;">
+<img src="https://godoc.org/github.com/tristangoossens/sokoban-go?status.svg">
+<img src="https://goreportcard.com/badge/github.com/tristangoossens/sokoban-go" >
+<img src="https://travis-ci.com/tristangoossens/sokoban-go.svg?branch=master">
+<img src="https://img.shields.io/github/issues/tristangoossens/sokoban-go">
+<img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat">
+
+---
+
+<p style="text-align:center;"><img src="https://github.com/tristangoossens/sokoban-go/blob/master/img/sokoban-logo.png" alt="Logo"></p>
+
 
 Retro game sokoban clone made in Go! Created by tristangoossens. ![GitHub followers](https://img.shields.io/github/followers/tristangoossens?style=social)  
 Please star this repository to help my project grow! ![GitHub stars](https://img.shields.io/github/stars/tristangoossens/sokoban-go?style=social)
+
 
 [![Run on Repl.it](https://repl.it/badge/github/tristangoossens/sokoban)](https://repl.it/github/tristangoossens/sokoban) 
 
