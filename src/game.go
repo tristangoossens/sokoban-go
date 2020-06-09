@@ -33,6 +33,14 @@ func StartGame() {
 	game.Start()
 }
 
+// GetTotalLevels get total levels in lvl folder
+func GetTotalLevels() int {
+	lvlFiles, _ := ioutil.ReadDir("data/lvl")
+	TotalLevels = len(lvlFiles)
+
+	return TotalLevels
+}
+
 //LoadLevel load level from last saved lvl
 func LoadLevel() int {
 	dat, err := ioutil.ReadFile("data/ui/loadgame.txt")

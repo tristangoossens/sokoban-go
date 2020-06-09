@@ -70,8 +70,7 @@ func NewGameScreen() *Gamescreen {
 	gs.SaveConfirmation = tl.NewText(45, 26, "", tl.ColorWhite, tl.ColorBlack)
 	gs.Time = tl.NewText(52, 4, "", tl.ColorWhite, tl.ColorBlack)
 
-	lvlFiles, _ := ioutil.ReadDir("data/lvl")
-	TotalLevels = len(lvlFiles)
+	GetTotalLevels()
 	gs.CurrentLevelText = tl.NewText(44, 2, fmt.Sprintf("---| Current Level %d of %d |---", CurrentLevel, TotalLevels), tl.ColorWhite, tl.ColorBlack)
 
 	uiFile, _ := ioutil.ReadFile("data/ui/gameui.txt")
