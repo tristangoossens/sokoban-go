@@ -51,7 +51,6 @@ func NewTitleScreen() *Titlescreen {
 
 	ts.Text = []*tl.Text{
 		tl.NewText(10, 20, "Press ENTER to start!", tl.ColorWhite, tl.ColorBlack),
-		tl.NewText(10, 22, "Press BACKSPACE to start from last saved level!", tl.ColorWhite, tl.ColorBlack),
 	}
 
 	for _, v := range ts.Text {

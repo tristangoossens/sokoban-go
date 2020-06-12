@@ -10,7 +10,7 @@
 #                         #      #                    #
 #                         #      #                    #
 #   : Player              #      #                    #
-#   : Goal                #      #   Insert: Save     #
+#   : Goal                #      #                    #
 #   : Crate               #      #                    #
 #   : Wall                #      #                    #          
 #                         #      #                    #
