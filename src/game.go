@@ -20,7 +20,7 @@ var gs *Gamescreen
 var CurrentLevel int
 
 // TotalLevels this integer represents the total amount of levels.
-var TotalLevels int
+var TotalLevels = GetTotalLevels()
 
 // StartGame starts the game by creating a new game and adding a titlescreen.
 func StartGame() {
@@ -36,9 +36,7 @@ func StartGame() {
 // GetTotalLevels get total levels in lvl folder
 func GetTotalLevels() int {
 	lvlFiles, _ := ioutil.ReadDir("data/lvl")
-	TotalLevels = len(lvlFiles)
-
-	return TotalLevels
+	return len(lvlFiles)
 }
 
 //LoadLevel load level from last saved lvl
