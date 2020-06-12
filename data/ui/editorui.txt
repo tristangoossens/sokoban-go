@@ -1,0 +1,31 @@
+╔════════════════════════════════════════════════════[Level editor]════════════════════════════════════════════════════╗
+║                                                                                                                      ║
+║      To create level please add an equal amount of crates and goals, and only one player and make                    ║  
+║      sure that the level is beatable                                                                                 ║
+║                                                                                                                      ║
+║      Current File:                                                                          [Del: Use eraser]        ║
+║      #######################################################################################################         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #                                                                                                     #         ║
+║      #######################################################################################################         ║
+║      To create a new file, press [Enter]                   The level contains a player                               ║
+║      To save your level, press [Ins]                       The level has an equal amount of crates and goals         ║
+║                                                                                                                      ║
+╚══[← ↑ ↓ →: Move cursor]═════[Space: Place wall]═════[F1: Place player]═════[F2: Place crate]═════[F3: Place goal]════╝
+
