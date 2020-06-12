@@ -5,7 +5,7 @@
 Retro game sokoban clone made in Go! Created by tristangoossens. ![GitHub followers](https://img.shields.io/github/followers/tristangoossens?style=social)  
 Please star this repository to help my project grow! ![GitHub stars](https://img.shields.io/github/stars/tristangoossens/sokoban-go?style=social)
 
-[![Run on Repl.it](https://repl.it/badge/github/tristangoossens/sokoban)](https://repl.it/github/tristangoossens/sokoban) 
+[![Run on Repl.it](https://repl.it/badge/github/tristangoossens/sokoban)](https://repl.it/@tristangoossens/sokoban-go#README.md) 
 
 ## The game
 
