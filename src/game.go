@@ -220,7 +220,7 @@ func (gs *GameCompletionScreen) SaveTime(finalTime string) {
 	var newRow []byte
 	datetime := time.Now()
 	newRow = []byte(fmt.Sprintf("\n|" + fmt.Sprintf("%s", datetime.Format("01-02-2006 15:04:05")) + "|" + fmt.Sprintf("%s", finalTime) + "|" + fmt.Sprintf("%d", TotalLevels) + "|"))
-	f, err := os.OpenFile("HIGHSCORES.md", os.O_APPEND|os.O_WRONLY, 0644)
+	f, err := os.OpenFile("data/HIGHSCORES.md", os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatalf("Error opening file: %s", err)
 	}
